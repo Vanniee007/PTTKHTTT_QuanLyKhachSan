@@ -55,11 +55,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BUS\PhieuDatPhong.cs" />
     <Compile Include="BUS\TaiKhoan.cs" />
-    <Compile Include="DBConnect.cs" />
+    <Compile Include="DB\DBConnect.cs" />
     <Compile Include="DB\TaiKhoanDB.cs" />
-    <Compile Include="SupportFunction.cs" />
-    <Page Include="Login_Window.xaml">
+    <Compile Include="DB\PhieuDatPhongDB.cs" />
+    <Compile Include="GUI\LeTan_Main.xaml.cs">
+      <DependentUpon>LeTan_Main.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\LeTan_ThemPhieuDatPhong.xaml.cs">
+      <DependentUpon>LeTan_ThemPhieuDatPhong.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\SupportFunction.cs" />
+    <Page Include="GUI\LeTan_ThemPhieuDatPhong.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Login_Window.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\LeTan_Main.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -71,8 +87,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="InputValidation.cs" />
-    <Compile Include="Login_Window.xaml.cs">
+    <Compile Include="BUS\InputValidation.cs" />
+    <Compile Include="GUI\Login_Window.xaml.cs">
       <DependentUpon>Login_Window.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
@@ -107,17 +123,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\door-key.png" />
-    <Resource Include="images\lock.png" />
-    <Resource Include="images\login_background.jpeg" />
-    <Resource Include="images\logout.png" />
-    <Resource Include="images\Logo_HCMUS.png" />
+    <Resource Include="GUI\images\door-key.png" />
+    <Resource Include="GUI\images\lock.png" />
+    <Resource Include="GUI\images\login_background.jpeg" />
+    <Resource Include="GUI\images\logout.png" />
+    <Resource Include="GUI\images\Logo_HCMUS.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="GUI\images\background.jpg" />
+    <Resource Include="GUI\images\search.png" />
     <Content Include="PTTK_HTTT.sql" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="GUI\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

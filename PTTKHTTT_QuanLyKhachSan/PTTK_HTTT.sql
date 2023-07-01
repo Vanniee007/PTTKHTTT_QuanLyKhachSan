@@ -12,93 +12,126 @@ drop table PHONG;
 drop table NHANVIEN;
 drop table TAIKHOAN;
 drop table KHACHHANG;
-
-create table KHACHHANG
+CREATE TABLE KHACHHANG
 (
-	MAKH int, 
-	HOTEN nvarchar(50), 
-	SDT char(11), 
+	MAKH INT, 
+	HOTEN NVARCHAR(50), 
+	SDT CHAR(11), 
 	DIACHI NVARCHAR(60), 
-	FAXID int, 
-	EMAIL varchar(50),
-	Constraint PK_KhachHang Primary key(MAKH)
+	FAXID INT, 
+	EMAIL VARCHAR(50),
+	CONSTRAINT PK_KHACHHANG PRIMARY KEY(MAKH)
 )
 
-create table TAIKHOAN
+CREATE TABLE TAIKHOAN
 (
-	username varchar(30),
-	pass varchar(30),
-	Constraint PK_TAIKHOAN Primary key(username)
+	USERNAME VARCHAR(30),
+	PASS VARCHAR(30) NOT NULL,
+	LOAI TINYINT NOT NULL,
+	CONSTRAINT PK_TAIKHOAN PRIMARY KEY(USERNAME)
 )
-create table NHANVIEN
+CREATE TABLE NHANVIEN
 (
-	MANV int, 
-	HOTEN nvarchar(50), 
-	SDT char(11), 
+	MANV INT, 
+	HOTEN NVARCHAR(50), 
+	SDT CHAR(11), 
 	DIACHI NVARCHAR(60), 
-	EMAIL varchar(50),
-	username varchar(30),
-	Constraint PK_NHANVIEN Primary key(MANV),
-	FOREIGN KEY(username) REFERENCES TAIKHOAN(username)
+	EMAIL VARCHAR(50),
+	USERNAME VARCHAR(30),
+	CONSTRAINT PK_NHANVIEN PRIMARY KEY(MANV),
+	FOREIGN KEY(USERNAME) REFERENCES TAIKHOAN(USERNAME)
 )
-create table PHONG
+CREATE TABLE PHONG
 (
-	MAPHONG int, 
+	MAPHONG INT, 
 	LOAIPHONG NVARCHAR(8), -- Đơn / Đôi
 	HANG NVARCHAR(8), -- Thường / Cao cấp
 	GIA INT,
 	TINHTRANG NVARCHAR(15), -- Trống / Chưa dọn / Đang dùng
-	Constraint PK_PHONG Primary key(MAPHONG)
+	CONSTRAINT PK_PHONG PRIMARY KEY(MAPHONG)
 )
-create table PHIEUDATPHONG
+CREATE TABLE PHIEUDATPHONG
 (
-	MAPDP int, 
+	MAPDP INT, 
 	NGAYLAP DATE,
 	NGAYNHANPHONG DATE,
 	NGAYTRAPHONG DATE,
-	MAKH int,
-	MANV int,
-	Constraint PK_PDP Primary key(MaPDP),
+	MAKH INT,
+	MANV INT,
+	CONSTRAINT PK_PDP PRIMARY KEY(MAPDP),
 	FOREIGN KEY(MAKH) REFERENCES KHACHHANG(MAKH)
 )
-create table CHITIETPHIEUDATPHONG
+CREATE TABLE CHITIETPHIEUDATPHONG
 (
-	MAPDP int, 
-	MAPHONG int,
-	Constraint PK_CTPDP Primary key(MaPDP, MAPHONG),
+	MAPDP INT, 
+	MAPHONG INT,
+	CONSTRAINT PK_CTPDP PRIMARY KEY(MAPDP, MAPHONG),
 	FOREIGN KEY(MAPHONG) REFERENCES PHONG(MAPHONG)
 )
 
-create table HOADON
+CREATE TABLE HOADON
 (
-	MAHD int, 
+	MAHD INT, 
 	NGAYLAP DATE,
-	MAPDP int, 
-	TinhTrangTT nvarchar(16), --Đã thanh toán / Đã cọc
-	MANV int, 
-	Constraint PK_HOADON Primary key(MAHD),
+	MAPDP INT, 
+	TONGTIEN INT,
+	TINHTRANGTT NVARCHAR(16), --Đã thanh toán / Đã cọc
+	MANV INT, 
+	CONSTRAINT PK_HOADON PRIMARY KEY(MAHD),
 	FOREIGN KEY(MAPDP) REFERENCES PHIEUDATPHONG(MAPDP),
 	FOREIGN KEY(MANV) REFERENCES NHANVIEN(MANV)
 )
-create table DICHVU
+CREATE TABLE DICHVU
 (
-	MADV int, 
+	MADV INT, 
 	TENDV VARCHAR(30),
 	GIA INT,
 	MOTA NVARCHAR(100),
 	DIADIEM NVARCHAR(30),
-	Constraint PK_DV Primary key(MaDV)
+	CONSTRAINT PK_DV PRIMARY KEY(MADV)
 )
-create table PDT_DICHVU
+CREATE TABLE PDT_DICHVU
 (
-	MADV int, 
-	MAPDP int, 
-	SOLUONG int, 
+	MADV INT, 
+	MAPDP INT, 
+	SOLUONG INT, 
 	THOIGIAN DATETIME,
-	Constraint PK_PDT_DV Primary key(MaDV, MaPDP),
+	CONSTRAINT PK_PDT_DV PRIMARY KEY(MADV, MAPDP),
 	FOREIGN KEY(MADV) REFERENCES DICHVU(MADV),
 	FOREIGN KEY(MAPDP) REFERENCES PHIEUDATPHONG(MAPDP)
 )
+
+
+-- create table Doitac
+-- (
+-- 	MaDoiTac CHAR(8), 
+-- 	TenDoiTac nvarchar(50), 
+-- 	SDT int
+-- 	Constraint PK_Doitac Primary key(MaDoiTac)
+-- )	
+
+-- create table TOUR_Doitac
+-- (
+-- 	MaTOURDT CHAR(8), 
+-- 	TenTOUR nvarchar(50), 
+-- 	DIADIEM NVARCHAR(50),
+-- 	GIA int,
+-- 	MOTACT NVARCHAR(100),
+-- 	MaDoiTac CHAR(8)
+-- 	Constraint PK_TOURDT Primary key(MaTOURDT),
+-- 	FOREIGN KEY(MADOITAC) REFERENCES DOITAC(MADOITAC)
+-- )
+
+-- create table PHIEUDANGKYTOUR
+-- (
+-- 	MaphieuTOUR CHAR(8), 
+-- 	THGIANKHOIHANH DATETIME,
+-- 	SONGUOITHGIA INT,
+-- 	DICHVUDUADON NVARCHAR(20),--???????
+-- 	YEUCAUDACBIET nvarchar(50), 
+-- 	TINHTRANGDUYET NVARCHAR(50),
+-- 	Constraint PK_PDKTOUR Primary key(MaPHIEUTOUR)
+-- )
 
 INSERT INTO KHACHHANG (MAKH, HOTEN, SDT, DIACHI, FAXID, EMAIL)VALUES (1, N'Nguyễn Văn An', '0123456789', N'123 Đường Nguyễn Du, Quận 1, Thành phố HCM', 1, 'nguyenvana@gmail.com');
 INSERT INTO KHACHHANG (MAKH, HOTEN, SDT, DIACHI, FAXID, EMAIL)VALUES (2, N'Trần Thị Bình', '0987654321', N'456 Đường Lê Lợi, Quận 2, Thành phố HCM', 2, 'tranthib@gmail.com');
@@ -131,21 +164,20 @@ INSERT INTO KHACHHANG (MAKH, HOTEN, SDT, DIACHI, FAXID, EMAIL)VALUES (28, N'Ph�
 INSERT INTO KHACHHANG (MAKH, HOTEN, SDT, DIACHI, FAXID, EMAIL)VALUES (29, N'Hoàng Văn Hùng', '0876543219', N'123 Đường Lê Hồng Phong, Quận 10, Thành phố HCM', 29, 'hoangvanhung@gmail.com');
 INSERT INTO KHACHHANG (MAKH, HOTEN, SDT, DIACHI, FAXID, EMAIL)VALUES (30, N'Lê Thị Mai', '0345678902', N'234 Đường Nguyễn Đình Chiểu, Quận 3, Thành phố HCM', 30, 'lethimai@gmail.com');
 select count(*) KHACHHANG from KHACHHANG
-
-INSERT INTO TAIKHOAN (username, pass) VALUES ('nguyenvana', '123456');
-INSERT INTO TAIKHOAN VALUES ('tranthib', '987654');
-INSERT INTO TAIKHOAN VALUES ('levanc', '555555');
-INSERT INTO TAIKHOAN VALUES ('phamthid', '111111');
-INSERT INTO TAIKHOAN VALUES ('hoangvane', '999999');
-INSERT INTO TAIKHOAN VALUES ('ngothif', '444444');
-INSERT INTO TAIKHOAN VALUES ('trinhvang', '888888');
-INSERT INTO TAIKHOAN VALUES ('lythih', '222222');
-INSERT INTO TAIKHOAN VALUES ('huynhvani', '666666');
-INSERT INTO TAIKHOAN VALUES ('vothik', '333333');
+INSERT INTO TAIKHOAN (username, pass,Loai) VALUES ('letan', '123',2);
+INSERT INTO TAIKHOAN VALUES ('admin', '123',1);
+INSERT INTO TAIKHOAN VALUES ('levanc', '555555',2);
+INSERT INTO TAIKHOAN VALUES ('phamthid', '111111',2);
+INSERT INTO TAIKHOAN VALUES ('hoangvane', '999999',2);
+INSERT INTO TAIKHOAN VALUES ('ngothif', '444444',2);
+INSERT INTO TAIKHOAN VALUES ('trinhvang', '888888',2);
+INSERT INTO TAIKHOAN VALUES ('lythih', '222222',2);
+INSERT INTO TAIKHOAN VALUES ('huynhvani', '666666',2);
+INSERT INTO TAIKHOAN VALUES ('vothik', '333333',2);
 select count(*) TAIKHOAN from TAIKHOAN
-
-INSERT INTO NHANVIEN (MANV, HOTEN, SDT, DIACHI, EMAIL, username) VALUES  (1, N'Nguyễn Văn A', '1234567801', N'123 Đường A', 'nguyenvana@example.com', 'nguyenvana');
-INSERT INTO NHANVIEN VALUES (2, N'Trần Thị B', '9876543109', N'456 Đường B', 'tranthib@example.com', 'tranthib');
+select * from TAIKHOAN
+INSERT INTO NHANVIEN (MANV, HOTEN, SDT, DIACHI, EMAIL, username) VALUES  (1, N'Lễ Thị Tân', '1234567801', N'123 Đường A', 'nguyenvana@example.com', 'letan');
+INSERT INTO NHANVIEN VALUES (2, N'Lê Áp Minh', '9876543109', N'456 Đường B', 'tranthib@example.com', 'admin');
 INSERT INTO NHANVIEN VALUES (3, N'Lê Văn C', '5555555555', N'789 Đường C', 'levanc@example.com', 'levanc');
 INSERT INTO NHANVIEN VALUES (4, N'Phạm Thị D', '1111111111', N'321 Đường D', 'phamthid@example.com', 'phamthid');
 INSERT INTO NHANVIEN VALUES (5, N'Hoàng Văn E', '9999999999', N'654 Đường E', 'hoangvane@example.com', 'hoangvane');

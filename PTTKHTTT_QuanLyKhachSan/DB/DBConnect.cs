@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PTTKHTTT_QuanLyKhachSan
+namespace PTTKHTTT_QuanLyKhachSan.DB
 {
     class DBConnect
     {

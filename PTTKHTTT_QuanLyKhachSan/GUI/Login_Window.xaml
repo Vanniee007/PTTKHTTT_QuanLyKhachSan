@@ -8,10 +8,10 @@
         Title="PTTKHTTT_QuanLyKhachSan" 
         WindowStyle="None"
         
-        Height="633" Width="1200">
+        Height="680" Width="1200">
     <Window.Resources>
         <Style x:Key="Login_Button"  TargetType="Button">
-            <Setter Property="Background" Value="Navy"/>
+            <Setter Property="Background" Value="#FFC26F"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -79,16 +79,16 @@
     </Window.Resources>
     <Grid KeyDown="Login_KeyDown"  MouseDown="Windows_MouseDown" >
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="50"/>
             <ColumnDefinition Width="1.6*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1.4*"/>
+            <RowDefinition Height="1.3*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Image Source="images/login_background.jpeg"  Grid.ColumnSpan="3" Grid.RowSpan="2"/>
+        <Image Source="images/background.jpg"  Grid.ColumnSpan="3" Grid.RowSpan="2"/>
         <Image Source="images/logo_hcmus.png" Height="180" Margin="0,0,0,40" Grid.Column="1"/>
 
         <!--Nửa bên trái-->
@@ -102,11 +102,11 @@
                 <!--<Button Style="{StaticResource MyStyle_Button_Sua}" Margin="5,0"  HorizontalAlignment="Left" Height="15" Width="15" Click="bt_mini_click"/>-->
                 <!--<Button Style="{StaticResource MyStyle_Button_Xoa}" HorizontalAlignment="Left" Height="15" Width="15" Click="bt_close_click"/>-->
             </StackPanel>
-            <Label Content="Four Fun Inc" Margin="0,0,0,10" Foreground="Navy" Style="{StaticResource LoginStyle_TitleLabel}" VerticalAlignment="Bottom" FontSize="55"/>
+            <Label Content="Fine Star Hotel" Margin="0,0,0,10" Foreground="Navy" Style="{StaticResource LoginStyle_TitleLabel}" VerticalAlignment="Bottom" FontSize="55"/>
         </Grid>
 
         <!--Khu vực login-->
-        <Grid Grid.Column="1" Grid.Row="1">
+        <Grid Grid.Column="1" Grid.Row="1" >
             <Grid Margin="0,0,0,0">
                 <!--Textbox nhập username-->
                 <Grid Height="40" Width="360" Margin="0,00,0,0" HorizontalAlignment="Center" VerticalAlignment="Top">
@@ -130,9 +130,7 @@
                     <Label x:Name="lb_error" Content="" Style="{StaticResource MyStyle_Label_TT}"  FontWeight="Medium" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                     <Button Style="{StaticResource Login_Button}" Content="Đăng nhập" 
                             Foreground="White" FontWeight="SemiBold"  
-                                FontSize="20"         
-                            Height="50"
-                            
+                                FontSize="20" Height="50"
                                 Click="DangNhap_Click"
                                 FocusVisualStyle="{x:Null}"
                                 BorderBrush="Transparent" Margin="0,35,0,0" VerticalAlignment="Top"/>
