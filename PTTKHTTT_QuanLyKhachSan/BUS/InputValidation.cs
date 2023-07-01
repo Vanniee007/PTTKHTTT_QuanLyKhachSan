@@ -59,7 +59,6 @@ namespace PTTKHTTT_QuanLyKhachSan
             {
                 return false;
             }
-
             // Chuẩn hóa tên theo dạng "Lê Minh Tiến" (giữa các từ chỉ có 1 khoảng trắng)
             string[] nameParts = name.Trim().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
             string normalizedName = string.Join(" ", nameParts);
