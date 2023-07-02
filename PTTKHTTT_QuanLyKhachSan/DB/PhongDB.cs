@@ -39,6 +39,88 @@ namespace PTTKHTTT_QuanLyKhachSan.DB
             }
 
         }
+        public static List<Phong> QLPhong_LayDSPhong()
+        {
+            try
+            {
+                DataTable tb = DBConnect.SQL_select("select * from PHONG");
+                           
+                List<Phong> ds = new List<Phong>();
+                foreach (DataRow row in tb.Rows)
+                {
+                    ds.Add(new Phong
+                    {
+                        MAPHONG = (int)row["MAPHONG"],
+                        LOAIPHONG = row["LOAIPHONG"].ToString(),
+                        HANG = row["HANG"].ToString(),
+                        GIA = (int)row["GIA"],
+                        TINHTRANG = row["TINHTRANG"].ToString(),
+                    });
+                }
+                return ds;
+            }
+            catch
+            {
+                return null;
+            }
+
+        }
+        public static List<Phong> QLPhong_LayDSPhongKhiTim(string kitu)
+        {
+            try
+            {
+                DataTable tb = DBConnect.SQL_select("exec QLPhong_TraCuuPhong N'"+ kitu+"'");
+
+                List<Phong> ds = new List<Phong>();
+                foreach (DataRow row in tb.Rows)
+                {
+                    ds.Add(new Phong
+                    {
+                        MAPHONG = (int)row["MAPHONG"],
+                        LOAIPHONG = row["LOAIPHONG"].ToString(),
+                        HANG = row["HANG"].ToString(),
+                        GIA = (int)row["GIA"],
+                        TINHTRANG = row["TINHTRANG"].ToString(),
+                    });
+                }
+                return ds;
+            }
+            catch
+            {
+               
+            }
+            return null;
+
+        }
+        public static int QLPhong_UpdateTinhTrang(int MaPhong,string TinhTrangMoi)
+        {
+            try
+            {
+                return DBConnect.SQL_insert_update_delete("update PHONG set TINHTRANG=N'"+TinhTrangMoi+"' where MAPHONG='"+MaPhong+"'");
+              
+            }
+            catch
+            {
+                
+            }
+            return -1; ;
+
+        }
+        //Hàm này dùng khi kiểm tra xem phòng này đã được đặt chưa
+        public static int QLPhong_DemDatPhong(int MaPhong)
+        {
+            try
+            {
+                DataTable tb = DBConnect.SQL_select("SELECT count(*)  FROM CHITIETPHIEUDATPHONG CTP INNER JOIN PHIEUDATPHONG PDP ON CTP.MAPDP = PDP.MAPDP WHERE MAPHONG='" + MaPhong + "'" +
+                    " and PDP.NGAYNHANPHONG<=GETDATE() AND PDP.NGAYTRAPHONG>=GETDATE()");
+                return Convert.ToInt32(tb.Rows[0][0]);
+            }
+            catch
+            {
+                return -1; ;
+            }
+        }
+
     }
 }
 

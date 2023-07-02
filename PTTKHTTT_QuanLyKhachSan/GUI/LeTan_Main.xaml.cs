@@ -87,5 +87,130 @@ namespace PTTKHTTT_QuanLyKhachSan.GUI
         {
 
         }
+
+
+        /*=================================================TABITEM: QUẢN LÝ PHÒNG =================================================
+         ==================================================================================================
+        ==================================================================================================
+        ==================================================================================================*/
+        private void Tk_tb_search_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(Tk_tb_search.Text) && Tk_tb_search.Text.Length > 0)
+            {
+                Tk_lb_search.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                Tk_lb_search.Visibility = Visibility.Visible;
+            }
+            // Kiểm tra xem phím Enter có được nhấn hay không
+          
+        }
+        private void QLPhong_HienThi()
+        {
+            try
+            {
+                QLPhong_datagird.ItemsSource = Phong.QLPhong_LayDSPhong();
+            }
+            catch { }
+        }
+        private void QLPhong_datagird_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            QLPhong_HienThi();
+        }
+
+        private void DA_bt_capnhat_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (QLPhong_datagird.SelectedIndex.ToString() != null)
+                {
+                    Phong row = (Phong)QLPhong_datagird.SelectedItem;
+                    if (row != null)
+                    {
+                        int kq = Phong.QLPhong_UpdateTinhTrangPhong(Convert.ToInt32(row.MAPHONG), QLPhong_tb_tthientai.Text, QLPhong_cb_tinhtrangmoi.Text);
+                        switch (kq)
+                        {
+                            case 1:
+                                SupportFunction.ShowSuccess(lb_error, "Đổi trạng thái thành công");
+                                QLPhong_HienThi();
+                                QLPhong_tb_tthientai.Text = QLPhong_cb_tinhtrangmoi.Text;
+                                break;
+                            case 0:
+                                SupportFunction.ShowError(lb_error, "Phòng chưa được thanh toán");
+                                break;
+                            case -1:
+                                SupportFunction.ShowError(lb_error, "Đổi trạng thái thất bại");
+                                break;
+                            case -2:
+                                SupportFunction.ShowError(lb_error, "Hiện tại phòng chưa được đặt");
+                                break;
+                            case -3:
+                                SupportFunction.ShowError(lb_error, "Không được, chỉ được sử dụng phòng khi đã dọn");
+                                break;
+                            case -4:
+                                SupportFunction.ShowError(lb_error, "Tình trạng cũ giống tình trạng mới");
+                                break;
+                            
+                            default:
+                                // Xử lý khi kq không rơi vào bất kỳ trường hợp nào trên
+                                break;
+                        }
+                    }
+                }
+                else
+                {
+                    SupportFunction.ShowError(lb_error, "Vui lòng chọn phòng bạn muốn cập nhật.");
+                }
+           
+            }
+            catch
+            {
+
+            }
+            
+        }
+
+        private void Da_bt_lichdat_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DA_bt_dichvu_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Tk_tb_search_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.Key == Key.Enter)
+                {
+                    QLPhong_datagird.ItemsSource = Phong.QLPhong_TimPhong(Tk_tb_search.Text);
+                }
+            }
+            catch { }
+            
+        }
+
+        private void QLPhong_datagird_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                if (QLPhong_datagird.SelectedIndex.ToString() != null)
+                {
+                    Phong row = (Phong)QLPhong_datagird.SelectedItem;
+                    if (row != null)
+                    {
+                        QLPhong_tb_tthientai.Text = row.TINHTRANG;
+                        QLPhong_label.Content = "Phòng: " + row.MAPHONG;
+                    }
+                }
+            }
+            catch
+            { }
+        }
     }
 }
