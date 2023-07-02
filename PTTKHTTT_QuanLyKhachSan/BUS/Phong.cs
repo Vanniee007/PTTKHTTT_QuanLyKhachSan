@@ -7,12 +7,20 @@ using System.Threading.Tasks;
 using PTTKHTTT_QuanLyKhachSan.DB;
 namespace PTTKHTTT_QuanLyKhachSan.BUS
 {
-     public class Phong
+    public class Phong
     {
         public int MAPHONG { get; set; }
         public string LOAIPHONG { get; set; }
         public string HANG { get; set; }
         public int GIA { get; set; }
         public string TINHTRANG { get; set; }
+        public static List<Phong> LayDSPhong(int MaPDP)
+        {
+            return PhongDB.TT_LayDSPhong_ChiTietPDP(MaPDP);
+        }
+        public static List<Phong> PDP_DSPhong_TheoNgay(string NgayBD, string NgayKT)
+        {
+            return PhongDB.PDP_LayDSPhongTrong_TheoNgay(NgayBD, NgayKT);
+        }
     }
 }

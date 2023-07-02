@@ -34,15 +34,30 @@ namespace PTTKHTTT_QuanLyKhachSan
         }
         public static string FormatShortDate(string dateTimeString)
         {
-            DateTime dateTime;
-            dateTime = DateTime.Parse(dateTimeString);
-            if (DateTime.TryParse(dateTimeString, out dateTime))
+            try
             {
-                string dateString = dateTime.ToString("dd/MM/yyyy");
-                return dateString;
+                DateTime dateTime;
+                dateTime = DateTime.Parse(dateTimeString);
+                if (DateTime.TryParse(dateTimeString, out dateTime))
+                {
+                    string dateString = dateTime.ToString("dd/MM/yyyy");
+                    return dateString;
+                }
+                return dateTimeString;
             }
-            return dateTimeString;
+            catch
+            {
+                return "";
+            }
             
+        }
+
+        public static string str(string str)
+        {
+            if (str == null)
+                return "";
+            return str;
+
         }
     }
 }
