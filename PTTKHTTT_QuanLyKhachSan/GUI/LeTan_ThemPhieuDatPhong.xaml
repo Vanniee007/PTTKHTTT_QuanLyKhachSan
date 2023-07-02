@@ -24,7 +24,7 @@
                 <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Orientation="Horizontal" >
                     <DatePicker x:Name="tb_NgayNhan"  Style="{StaticResource MyStyle_DatePicker_TT}" Width="180"/>
                     <DatePicker x:Name="tb_NgayTra"  Style="{StaticResource MyStyle_DatePicker_TT}" Width="180" Margin="20,0"/>
-                    <Button Style="{StaticResource MyStyle_Button_Modern}" Width="35">
+                    <Button Click="TimKiemPhong_Click" Style="{StaticResource MyStyle_Button_Modern}" Width="35">
                         <Image Source="../GUI/images/search.png"  Height="30"   />
                     </Button>
                 </StackPanel>
@@ -36,19 +36,19 @@
                 </StackPanel>
             </Grid>
             <Grid Grid.Column="1" Grid.Row="1" >
-                <DataGrid x:Name="DP_datagird" 
+                <DataGrid x:Name="DP_datagird_Phong" 
                           
                                   AutoGenerateColumns="False"
                                   IsReadOnly="True"
                           FontSize="18"
                                   Loaded="DP_datagird_Loaded"
-                                  Background="White" Margin="10,10,10,10">
+                                  Background="White" Margin="0,10">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Mã phòng" Binding="{Binding MANV}"    Width="0.5*"/>
-                        <DataGridTextColumn Header="Loại phòng" Binding="{Binding MADA}"  Width="1*"  />
-                        <DataGridTextColumn Header="Hạng" Binding="{Binding MADA}"  Width="1*"  />
-                        <DataGridTextColumn Header="Giá" Binding="{Binding MADA}"  Width="1*"  />
-                        <DataGridTextColumn Header="Tình trạng" Binding="{Binding MADA}"  Width="1*"  />
+                        <DataGridTextColumn Header="Mã phòng" Binding="{Binding MAPHONG}"    Width="0.5*"/>
+                        <DataGridTextColumn Header="Loại phòng" Binding="{Binding LOAIPHONG}"  Width="1*"  />
+                        <DataGridTextColumn Header="Hạng" Binding="{Binding HANG}"  Width="1*"  />
+                        <DataGridTextColumn Header="Giá" Binding="{Binding GIA}"  Width="1*"  />
+                        <DataGridTextColumn Header="Tình trạng" Binding="{Binding TINHTRANG}"  Width="1*"  />
 
                     </DataGrid.Columns>
                 </DataGrid >

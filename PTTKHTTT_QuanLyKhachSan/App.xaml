@@ -198,6 +198,7 @@
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="VerticalAlignment" Value="Top"/>
             <Setter Property="FontSize" Value="18"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Height" Value="34"/>
             <Setter Property="TextWrapping" Value="Wrap"/>
         </Style>
