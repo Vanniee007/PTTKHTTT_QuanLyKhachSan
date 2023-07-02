@@ -89,7 +89,7 @@
 
                 </Grid>
             </TabItem>
-            <!--<TabItem >
+            <TabItem >
                 <TabItem.Header >
                     <TextBlock Text="Thanh Toán"  FontSize="18" Foreground="White" FontWeight="Medium"    />
                 </TabItem.Header>
@@ -184,7 +184,7 @@
 
 
                 </Grid>
-            </TabItem>-->
+            </TabItem>
             <TabItem >
                 <TabItem.Header >
                     <TextBlock Text="Quản lý phòng"  FontSize="18" Foreground="White" FontWeight="Medium"    />

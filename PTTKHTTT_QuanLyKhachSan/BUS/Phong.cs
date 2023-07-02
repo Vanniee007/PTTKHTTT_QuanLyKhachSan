@@ -22,7 +22,7 @@ namespace PTTKHTTT_QuanLyKhachSan.BUS
         {
             return PhongDB.QLPhong_LayDSPhongKhiTim(kitu);
         }
-        public static int QLPhong_UpdateTinhTrangPhong(int MaPhong,string TinhTrangCu, string TinhTrangMoi)
+        public static int QLPhong_UpdateTinhTrangPhong(int MaPhong, string TinhTrangCu, string TinhTrangMoi)
         {
             try
             {
@@ -53,9 +53,11 @@ namespace PTTKHTTT_QuanLyKhachSan.BUS
                 return -4;//thông báo: 2 tình trạng update giống tình trạng cũ
 
             }
-            catch {
+            catch
+            {
                 return -1;
             }
+        }
         public static List<Phong> LayDSPhong(int MaPDP)
         {
             return PhongDB.TT_LayDSPhong_ChiTietPDP(MaPDP);
