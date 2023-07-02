@@ -696,4 +696,3 @@ BEGIN
             OR (PDP.NGAYTRAPHONG > @StartDate AND PDP.NGAYTRAPHONG<= @EndDate))
     )
 END
-select* from KHACHHANG
