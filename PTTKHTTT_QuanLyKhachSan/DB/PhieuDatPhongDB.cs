@@ -14,7 +14,7 @@ namespace PTTKHTTT_QuanLyKhachSan.DB
         {
             try
             {
-                DataTable tb = DBConnect.SQL_select("select * from PhieuDatPhong");
+                DataTable tb = DBConnect.SQL_select("select * from PhieuDatPhong order by MAPDP DESC");
                 List<PhieuDatPhong> ds = new List<PhieuDatPhong>();
                 foreach (DataRow row in tb.Rows)
                 {
@@ -36,7 +36,7 @@ namespace PTTKHTTT_QuanLyKhachSan.DB
             }
 
         }
-
+         
 
 
     }

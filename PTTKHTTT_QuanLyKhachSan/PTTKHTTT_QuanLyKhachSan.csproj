@@ -60,9 +60,11 @@
     <Compile Include="BUS\PhieuDatPhong.cs" />
     <Compile Include="BUS\HoaDon.cs" />
     <Compile Include="BUS\DichVu.cs" />
+    <Compile Include="BUS\KhachHang.cs" />
     <Compile Include="BUS\Phong.cs" />
     <Compile Include="BUS\TaiKhoan.cs" />
     <Compile Include="DB\DBConnect.cs" />
+    <Compile Include="DB\KhachHangDB.cs" />
     <Compile Include="DB\DichVuDB.cs" />
     <Compile Include="DB\PhongDB.cs" />
     <Compile Include="DB\HoaDonDB.cs" />

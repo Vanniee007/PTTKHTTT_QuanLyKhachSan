@@ -70,9 +70,9 @@ namespace PTTKHTTT_QuanLyKhachSan.GUI
 
         private void DP_datagird_Loaded(object sender, RoutedEventArgs e)
         {
-            HienThi();
+            DP_HienThi();
         }
-        private void HienThi()
+        private void DP_HienThi()
         {
 
             DP_datagird.ItemsSource = PhieuDatPhong.LayDanhSachPDP();
@@ -80,6 +80,9 @@ namespace PTTKHTTT_QuanLyKhachSan.GUI
 
         private void DP_tb_Them_Click(object sender, RoutedEventArgs e)
         {
+            LeTan_ThemPhieuDatPhong pdp = new LeTan_ThemPhieuDatPhong();
+            pdp.ShowDialog();
+            DP_HienThi();
 
         }
 
@@ -182,6 +185,36 @@ namespace PTTKHTTT_QuanLyKhachSan.GUI
 
         }
 
+        private void TT_datagird_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                if (TT_datagird.SelectedItem != null)
+                {
+                    HoaDon row = (HoaDon)TT_datagird.SelectedItem;
+
+                    TT_CTPDP_datagird.ItemsSource = Phong.LayDSPhong(row.MAPDP);
+                    TT_DVP_datagird.ItemsSource = DichVu.TT_LayDSDichVu_PDP(row.MAPDP);
+                    KhachHang kh = KhachHang.TT_LayThongTinKhach_PDP(row.MAPDP);
+                    TT_tb_hoten.Text = kh.HOTEN;
+                    TT_tb_cccd.Text = kh.CCCD;
+                    TT_tb_sdt.Text = kh.SDT;
+
+                }
+            }
+            catch
+            { }
+        }
+        private void TT_datagird_Loaded(object sender, RoutedEventArgs e)
+        {
+            TT_datagird.ItemsSource = HoaDon.LayDanhSachHoaDon();
+        }
+
+        private void TT_CT_datagird_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private void Tk_tb_search_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -211,6 +244,9 @@ namespace PTTKHTTT_QuanLyKhachSan.GUI
             }
             catch
             { }
+        private void TT_tb_Them_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

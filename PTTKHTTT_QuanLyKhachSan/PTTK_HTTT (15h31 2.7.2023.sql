@@ -678,7 +678,6 @@ select count(*) PDT_DICHVU from PDT_DICHVU
 go
 drop proc LayDSPhongDeDat
 go
-
 create PROCEDURE LayDSPhongDeDat
     @StartDate DATE,
     @EndDate DATE
