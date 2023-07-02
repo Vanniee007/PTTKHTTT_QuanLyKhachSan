@@ -56,6 +56,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="BUS\ChiTietPhieuDatPhong.cs" />
+    <Compile Include="BUS\KhachHang.cs" />
     <Compile Include="BUS\PhieuDatPhong.cs" />
     <Compile Include="BUS\HoaDon.cs" />
     <Compile Include="BUS\DichVu.cs" />
