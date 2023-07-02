@@ -244,6 +244,7 @@ namespace PTTKHTTT_QuanLyKhachSan.GUI
             }
             catch
             { }
+        }
         private void TT_tb_Them_Click(object sender, RoutedEventArgs e)
         {
 
