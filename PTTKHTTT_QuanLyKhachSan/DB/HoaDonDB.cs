@@ -2,29 +2,30 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using PTTKHTTT_QuanLyKhachSan.BUS;
 namespace PTTKHTTT_QuanLyKhachSan.DB
 {
-    public class PhieuDatPhongDB
+    public class HoaDonDB
     {
-        public static List<PhieuDatPhong> LayDanhSachTatCa()
+        public static List<HoaDon> LayDanhSachTatCa()
         {
             try
             {
-                DataTable tb = DBConnect.SQL_select("select * from PhieuDatPhong");
-                List<PhieuDatPhong> ds = new List<PhieuDatPhong>();
+                DataTable tb = DBConnect.SQL_select("select * from HoaDon");
+                List<HoaDon> ds = new List<HoaDon>();
                 foreach (DataRow row in tb.Rows)
                 {
-                    ds.Add(new PhieuDatPhong
+                    ds.Add(new HoaDon
                     {
-                        MAPDP = (int)row["MAPDP"],
+                        MAHD = (int)row["MAHD"],
                         NGAYLAP = SupportFunction.FormatShortDate(row["NGAYLAP"].ToString()),
-                        NGAYNHANPHONG = SupportFunction.FormatShortDate(row["NGAYNHANPHONG"].ToString()),
-                        NGAYTRAPHONG = SupportFunction.FormatShortDate(row["NGAYTRAPHONG"].ToString()),
-                        MAKH = (int)row["MAKH"],
+                        MAPDP = (int)row["MAPDP"],
+                        TONGTIEN = (int)row["TONGTIEN"],
+                        TINHTRANGTT = row["TINHTRANGTT"].ToString(),
                         MANV = (int)row["MANV"],
                     });
                 }
@@ -34,11 +35,7 @@ namespace PTTKHTTT_QuanLyKhachSan.DB
             {
                 return null;
             }
-
         }
-
-
-
     }
 }
 
