@@ -55,9 +55,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BUS\ChiTietPhieuDatPhong.cs" />
     <Compile Include="BUS\PhieuDatPhong.cs" />
+    <Compile Include="BUS\HoaDon.cs" />
+    <Compile Include="BUS\DichVu.cs" />
+    <Compile Include="BUS\Phong.cs" />
     <Compile Include="BUS\TaiKhoan.cs" />
     <Compile Include="DB\DBConnect.cs" />
+    <Compile Include="DB\DichVuDB.cs" />
+    <Compile Include="DB\PhongDB.cs" />
+    <Compile Include="DB\HoaDonDB.cs" />
+    <Compile Include="DB\ChiTietPhieuDatPhongDB.cs" />
     <Compile Include="DB\TaiKhoanDB.cs" />
     <Compile Include="DB\PhieuDatPhongDB.cs" />
     <Compile Include="GUI\LeTan_Main.xaml.cs">
