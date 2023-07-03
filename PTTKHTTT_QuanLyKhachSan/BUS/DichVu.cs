@@ -20,5 +20,9 @@ namespace PTTKHTTT_QuanLyKhachSan.BUS
         {
             return DichVuDB.LayDSDichVu_ChiTietPDP(MaPDP);
         }
+        public static List<DichVu> QLPhong_tdv_LayDSDichVu()
+        {
+            return DichVuDB.QLPhong_tdv_LayDSDV();
+        }
     }
 }

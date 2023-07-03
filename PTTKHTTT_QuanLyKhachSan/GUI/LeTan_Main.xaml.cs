@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging; 
 using System.Windows.Shapes;
 using PTTKHTTT_QuanLyKhachSan.BUS;
+using System.Security.Claims;
 
 namespace PTTKHTTT_QuanLyKhachSan.GUI
 {
@@ -139,6 +140,12 @@ namespace PTTKHTTT_QuanLyKhachSan.GUI
                                 SupportFunction.ShowSuccess(lb_error, "Đổi trạng thái thành công");
                                 QLPhong_HienThi();
                                 QLPhong_tb_tthientai.Text = QLPhong_cb_tinhtrangmoi.Text;
+                                if(QLPhong_tb_tthientai.Text=="Đang dùng")
+                                {
+                                    KhachHang kh = KhachHang.QLPhong_LayThongTinKhach_PDP(row.MAPHONG);
+                                    QLPhong_tb_tenkhach.Text = kh.HOTEN;
+                                    QLPhong_tb_cccd.Text = kh.CCCD;
+                                }
                                 break;
                             case 0:
                                 SupportFunction.ShowError(lb_error, "Phòng chưa được thanh toán");
@@ -161,11 +168,12 @@ namespace PTTKHTTT_QuanLyKhachSan.GUI
                                 break;
                         }
                     }
+                    else
+                    {
+                        SupportFunction.ShowError(lb_error, "Vui lòng chọn phòng bạn muốn cập nhật.");
+                    }
                 }
-                else
-                {
-                    SupportFunction.ShowError(lb_error, "Vui lòng chọn phòng bạn muốn cập nhật.");
-                }
+             
            
             }
             catch
@@ -177,12 +185,56 @@ namespace PTTKHTTT_QuanLyKhachSan.GUI
 
         private void Da_bt_lichdat_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                if (QLPhong_datagird.SelectedIndex.ToString() != null)
+                {
+                    Phong row = (Phong)QLPhong_datagird.SelectedItem;
+                    if (row != null)
+                    {
 
+                        LeTan_QLPhong_XemPDP qlp = new LeTan_QLPhong_XemPDP(row.MAPHONG);
+                        qlp.ShowDialog();
+                    }
+                    else
+                    {
+                        SupportFunction.ShowError(lb_error, "Vui lòng chọn phòng bạn muốn xem lịch.");
+                    }
+                }
+              
+
+            }
+            catch
+            {
+
+            }
         }
 
         private void DA_bt_dichvu_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                if (QLPhong_datagird.SelectedIndex.ToString() != null)
+                {
+                    Phong row = (Phong)QLPhong_datagird.SelectedItem;
+                    if (row != null)
+                    {
 
+                        LeTan_QLPhong_ThemDichVu tdv = new LeTan_QLPhong_ThemDichVu(row.MAPHONG);
+                        tdv.ShowDialog();
+                    }
+                    else
+                    {
+                        SupportFunction.ShowError(lb_error, "Vui lòng chọn phòng bạn muốn đặt dịch vụ.");
+                    }
+                }
+
+
+            }
+            catch
+            {
+
+            }
         }
 
         private void TT_datagird_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -239,6 +291,21 @@ namespace PTTKHTTT_QuanLyKhachSan.GUI
                     {
                         QLPhong_tb_tthientai.Text = row.TINHTRANG;
                         QLPhong_label.Content = "Phòng: " + row.MAPHONG;
+                        if(row.TINHTRANG=="Đang dùng")
+                        {
+                            
+                            KhachHang kh = KhachHang.QLPhong_LayThongTinKhach_PDP(row.MAPHONG);
+                            QLPhong_tb_tenkhach.Text = kh.HOTEN;
+                            QLPhong_tb_cccd.Text = kh.CCCD;
+
+
+
+                        }
+                        else
+                        {
+                            QLPhong_tb_tenkhach.Text = "";
+                            QLPhong_tb_cccd.Text = "";
+                        }
                     }
                 }
             }
@@ -248,6 +315,51 @@ namespace PTTKHTTT_QuanLyKhachSan.GUI
         private void TT_tb_Them_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+        /*=================================================TABITEM: DỊCH VỤ TOUR =================================================
+        ==================================================================================================
+       ==================================================================================================
+       ==================================================================================================*/
+        private void Tour_bt_dangky_Click(object sender, RoutedEventArgs e)
+        { 
+            try
+            {
+                PhieuDangKyTour pdk = new PhieuDangKyTour
+                {
+                    MAPDKTOUR = -1,
+                    THGIANKHOIHANH = Tour_tb_ngaykhoihanh.Text,
+                    SONGUOITHGIA = int.Parse(Tour_tb_songuoi.Text),
+                    DICHVUDUADON = Tour_cb_duadon.Text,
+                    YEUCAUDACBIET = Tour_tb_yeucau.Text,
+                    MAKH = int.Parse(Tour_cb_makh.Text),
+                    MATOUR = int.Parse(Tour_cb_matour.Text)
+                };
+                if (PhieuDangKyTour.DVTour_ThemPDKTour(pdk) == true)
+                {
+                    SupportFunction.ShowSuccess(lb_error, "Thêm thành công");
+                    DVTour_HienThi();
+                }
+                else
+                {
+                    SupportFunction.ShowError(lb_error, "Thêm thất bại");
+                }
+            }
+            catch
+            {
+
+            }
+        }
+       
+        
+        public void DVTour_HienThi()
+        {
+            Tour_datagird.ItemsSource = PhieuDangKyTour.DVTour_LayDSpdkTour();
+            Tour_cb_matour.DataContext = Tour.DVTour_LayDSMaTour();
+            Tour_cb_makh.DataContext = KhachHang.DVTour_LayDSMaKhachHang();
+        }
+        private void Tour_datagird_Loaded(object sender, RoutedEventArgs e)
+        {
+            DVTour_HienThi();
         }
     }
 }

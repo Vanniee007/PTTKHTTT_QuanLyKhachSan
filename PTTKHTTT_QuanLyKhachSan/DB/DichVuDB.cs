@@ -41,6 +41,33 @@ namespace PTTKHTTT_QuanLyKhachSan.DB
             }
 
         }
+        public static List<DichVu> QLPhong_tdv_LayDSDV()
+        {
+            try
+            {
+                DataTable tb = DBConnect.SQL_select(
+                            "select * from DICHVU");
+                List<DichVu> ds = new List<DichVu>();
+                foreach (DataRow row in tb.Rows)
+                {
+                    ds.Add(new DichVu
+                    {
+                        MADV = (int)row["MADV"],
+                        TENDV = row["TENDV"].ToString(),
+                        GIA = (int)row["GIA"],
+                        MOTA = row["MOTA"].ToString(),
+                        DIADIEM = row["DIADIEM"].ToString(),
+                       
+                    });
+                }
+                return ds;
+            }
+            catch
+            {
+                return null;
+            }
+
+        }
     }
 }
 
