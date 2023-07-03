@@ -10,7 +10,7 @@ namespace PTTKHTTT_QuanLyKhachSan.DB
 {
     class DBConnect
     {
-        static string chuoiKetNoi = "Data Source=.;Initial Catalog=PTTKHTTT_QLKS;Integrated Security=True";
+        static string chuoiKetNoi = "Data Source=LAPTOP-5OL2FINF\\SQLEXPRESS;Initial Catalog=PTTKHTTT_QLKS;Integrated Security=True";
         public static SqlConnection traCon = new SqlConnection(chuoiKetNoi);
         public static DataTable SQL_select(string query)
         {
