@@ -73,7 +73,7 @@ namespace PTTKHTTT_QuanLyKhachSan.DB
                         CCCD = row["CCCD"].ToString(),
                         SDT = row["SDT"].ToString(),
                         DIACHI = row["DIACHI"].ToString(),
-                        FAXID =row["FAXID"].ToString(),
+                        FAXID = row["FAXID"].ToString(),
                         EMAIL = row["EMAIL"].ToString(),
 
                     });

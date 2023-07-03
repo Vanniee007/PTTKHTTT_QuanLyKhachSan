@@ -96,7 +96,7 @@ namespace PTTKHTTT_QuanLyKhachSan.DB
         {
             try
             {
-                DataTable tb = DBConnect.SQL_select("EXEC LayDSPhongDeDat @StartDate = '"+NgayBD+"', @EndDate = '"+NgayKT+"';");
+                DataTable tb = DBConnect.SQL_select("EXEC LayDSPhongDeDat @StartDate = '"+ SupportFunction.FormatDateSQL(NgayBD) + "', @EndDate = '"+ SupportFunction.FormatDateSQL(NgayKT) +"';");
                 List<Phong> ds = new List<Phong>();
                 foreach (DataRow row in tb.Rows)
                 {
