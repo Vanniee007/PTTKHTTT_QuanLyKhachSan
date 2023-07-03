@@ -7,6 +7,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Documents;
 using PTTKHTTT_QuanLyKhachSan.DB;
 namespace PTTKHTTT_QuanLyKhachSan.BUS
 {
@@ -71,6 +72,9 @@ namespace PTTKHTTT_QuanLyKhachSan.BUS
             {
                 return -1;
             }
+        public static List<PhieuDatPhong> QLPhong_xempdp_LayDanhSachPDP(int MaPhong)
+        {
+            return PhieuDatPhongDB.QLPhong_xempdp_LayDSPDP(MaPhong);
         }
 
     }

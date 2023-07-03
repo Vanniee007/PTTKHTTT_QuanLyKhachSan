@@ -1,0 +1,95 @@
+﻿<Window x:Class="PTTKHTTT_QuanLyKhachSan.GUI.LeTan_QLPhong_ThemDichVu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+         xmlns:local="clr-namespace:PTTKHTTT_QuanLyKhachSan.GUI"
+        mc:Ignorable="d"
+        MinHeight="570"
+        MinWidth="1000"
+        Height="570"
+        Width="1000"
+        Title="LeTan_QLPhong_XemPDP" >
+    <Grid  MouseDown="Windows_MouseDown">
+        <Grid Style="{StaticResource MyStyle_GridBackground}" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="20"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2"  Background="#6695ed">
+                <Label x:Name="lb_title"  
+                               Content="Dịch vụ" 
+                               FontWeight="Medium"
+                               FontSize="36"
+                               HorizontalAlignment="Center" 
+                               VerticalAlignment="Center"/>
+            </Grid>
+
+
+            <Grid Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="1">
+                <DataGrid x:Name="DV_datagird" 
+                                  AutoGenerateColumns="False"
+                                  IsReadOnly="True"
+                                  SelectionChanged="DV_datagird_SelectionChanged"
+                                  Loaded="DV_datagird_Loaded"
+                                  Background="White" Margin="10,10,10,10">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Mã dịch vụ" Binding="{Binding MADV}"  Width="1*" />
+                        <DataGridTextColumn Header="Tên DV" Binding="{Binding TENDV}"   Width="2*" />
+                        <DataGridTextColumn Header="Giá" Binding="{Binding MADV}"   Width="*"/>
+                        <DataGridTextColumn Header="Mô tả" Binding="{Binding MOTA}"   Width="1.5*"/>
+                        <DataGridTextColumn Header="Địa điểm" Binding="{Binding DIADIEM}"   Width="1.5*" />
+                       
+                    </DataGrid.Columns>
+                </DataGrid >
+            </Grid>
+
+            <Grid Grid.Column="2" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.4*"/>
+                    <RowDefinition Height="0.6*"/>
+                    
+                </Grid.RowDefinitions>
+                <DataGrid x:Name="DVDat_datagird" Grid.Row="0" 
+                                  AutoGenerateColumns="False"
+                                  IsReadOnly="True"
+                                  Loaded="DVDat_datagird_Loaded"
+                                  Background="White" Margin="10,10,10,10">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Tên DV" Binding="{Binding TENDV}"  Width="*"/>
+                        <DataGridTextColumn Header="Giá" Binding="{Binding GIA}"  Width="*"/>
+                        <DataGridTextColumn Header="Số lượng" Binding="{Binding SOLUONG}" Width="*"/>
+                        <DataGridTextColumn Header="Thời gian" Binding="{Binding THOIGIAN}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid >
+
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="100*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel HorizontalAlignment="Right" Grid.Column="0" >
+                        <Label Content="Tên DV" Height="35" Style="{StaticResource MyStyle_Label_TT}" Margin="0,20"/>
+                        <Label Content="Số lượng" Height="35" Style="{StaticResource MyStyle_Label_TT}"  />
+                        <Label Content="Thời gian" Height="35" Style="{StaticResource MyStyle_Label_TT}" Margin="0,20"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1">
+                        <TextBox x:Name="DV_tb_tendv" Style="{StaticResource MyStyle_ReadOnlyTextbox_TT}" Height="35" Width="250" Margin="0,20"/>
+                        <TextBox x:Name="DV_tb_soluong" Style="{StaticResource MyStyle_TextBox_TT}" Height="35" Width="250" />
+                        <DatePicker x:Name="DV_tb_thoigian"  Style="{StaticResource MyStyle_DatePicker_TT}" Height="35" Width="250" Margin="0,20"/>
+                    </StackPanel>
+                    <Button x:Name="DV_bt_dat" Grid.Column="1"  Content="Đặt" Style="{StaticResource MyStyle_Button_Xanh}" Width="100"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,50"  Click="DV_bt_dat_Click"/>
+                </Grid>
+
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

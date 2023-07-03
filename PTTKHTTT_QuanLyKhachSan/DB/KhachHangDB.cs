@@ -57,6 +57,34 @@ namespace PTTKHTTT_QuanLyKhachSan.DB
                 return null;
             }
         }
+        public static List<KhachHang> DVTour_LayDSKhachHang()
+        {
+            try
+            {
+                DataTable tb = DBConnect.SQL_select(
+                            "select * from KHACHHANG");
+                List<KhachHang> ds = new List<KhachHang>();
+                foreach (DataRow row in tb.Rows)
+                {
+                    ds.Add(new KhachHang
+                    {
+                        MAKH = (int)row["MAKH"],
+                        HOTEN = row["HOTEN"].ToString(),
+                        CCCD = row["CCCD"].ToString(),
+                        SDT = row["SDT"].ToString(),
+                        DIACHI = row["DIACHI"].ToString(),
+                        FAXID = (int)row["FAXID"],
+                        EMAIL = row["EMAIL"].ToString(),
+
+                    });
+                }
+                return ds;
+            }
+            catch
+            {
+                return null;
+            }
+        }
         public static int PDP_ThemKhachHang(KhachHang k)
         {
             try
@@ -68,6 +96,7 @@ namespace PTTKHTTT_QuanLyKhachSan.DB
                 return -1;
             }
         }
+
     }
 }
 

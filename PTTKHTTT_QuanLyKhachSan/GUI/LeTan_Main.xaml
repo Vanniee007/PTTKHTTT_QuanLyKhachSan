@@ -264,7 +264,7 @@
                         </Grid.ColumnDefinitions>
                         <StackPanel HorizontalAlignment="Center" Grid.Column="0" >
                             <Label Content="TTrạng hiện tại" Height="35" Style="{StaticResource MyStyle_Label_TT}"/>
-                            <Label Content="Tình trạng mói" Height="35" Style="{StaticResource MyStyle_Label_TT}" Margin="0,60"/>
+                            <Label Content="Tình trạng mới" Height="35" Style="{StaticResource MyStyle_Label_TT}" Margin="0,60"/>
                             <Label Content="Tên khách" Height="35" Style="{StaticResource MyStyle_Label_TT}"  />
                             <Label Content="CCCD" Height="35" Style="{StaticResource MyStyle_Label_TT}"  Margin="0,60"/>
                         </StackPanel>
@@ -288,6 +288,88 @@
                         <Button x:Name="DA_bt_dichvu" Width="100" Content="Dịch vụ" Style="{StaticResource MyStyle_Button_Xanh}" HorizontalAlignment="Right" VerticalAlignment="Top" Click="DA_bt_dichvu_Click" />
                     </Grid>
 
+                </Grid>
+            </TabItem>
+            <TabItem >
+                <TabItem.Header >
+                    <TextBlock Text="Dịch vụ tour"  FontSize="18" Foreground="White" FontWeight="Medium"    />
+                </TabItem.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="0.6*"/>
+                        <ColumnDefinition Width="0.4*"/>
+                        <ColumnDefinition Width="10"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="10"/>
+                    </Grid.RowDefinitions>
+
+
+                    
+                    <Grid Grid.Column="1" Grid.Row="1"  >
+                        <Label x:Name="Tour_label"  
+                               Content="Phiếu đăng kí" 
+                               FontWeight="Medium"
+                               FontSize="28"
+                               HorizontalAlignment="Center" 
+                               VerticalAlignment="Center"/>
+
+                    </Grid>
+                    <Grid Grid.Column="1" Grid.Row="2" >
+                        <DataGrid x:Name="Tour_datagird" 
+                                  AutoGenerateColumns="False"
+                                  IsReadOnly="True"
+                                  Loaded="Tour_datagird_Loaded"
+                                 
+                                  Background="White" Margin="10,10,10,10">
+                            <DataGrid.Columns>
+                               
+                                <DataGridTextColumn Header="Mã phiếu"  Binding="{Binding MAPDKTOUR}"  Width="3*" />
+                                <DataGridTextColumn Header="Khởi hành" Binding="{Binding THGIANKHOIHANH}"  Width="3*"  />
+                                <DataGridTextColumn Header="Số người" Binding="{Binding SONGUOITHGIA}"  Width="3*"  />
+                                <DataGridTextColumn Header="DV đưa đón" Binding="{Binding DICHVUDUADON}"  Width="4*"  />
+                                <DataGridTextColumn Header="Yêu cầu" Binding="{Binding YEUCAUDACBIET}"  Width="4*"  />
+                                <DataGridTextColumn Header="Mã KH" Binding="{Binding MAKH}"  Width="1*"  />
+                                <DataGridTextColumn Header="Mã tour" Binding="{Binding MATOUR}"  Width="1*"  />
+
+                            </DataGrid.Columns>
+                        </DataGrid >
+                    </Grid>
+                    <Grid Grid.Column="2" Grid.Row="2" >
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="130"/>
+                            <ColumnDefinition Width="200*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel HorizontalAlignment="Right" Grid.Column="0" >
+                            <Label Content="Mã tour" Height="35" Style="{StaticResource MyStyle_Label_TT}"/>
+                            <Label Content="Mã KH" Height="35" Style="{StaticResource MyStyle_Label_TT}"  Margin="0,35"/>
+                            <Label Content="Khởi hành" Height="35" Style="{StaticResource MyStyle_Label_TT}"/>
+                            <Label Content="Số người" Height="35" Style="{StaticResource MyStyle_Label_TT}"  Margin="0,35"/>
+                            <Label Content="Đưa đón" Height="35" Style="{StaticResource MyStyle_Label_TT}"/>
+                            <Label Content="Yêu cầu" Height="35" Style="{StaticResource MyStyle_Label_TT}"  Margin="0,35"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1">
+                            <ComboBox x:Name="Tour_cb_matour" ItemsSource="{Binding}"   Style="{StaticResource MyStyle_ComboBox_TT}" Height="35" Width="250"/>
+                            <ComboBox x:Name="Tour_cb_makh" ItemsSource="{Binding}"   Style="{StaticResource MyStyle_ComboBox_TT}" Height="35" Width="250"  Margin="0,35"/>
+                            <DatePicker x:Name="Tour_tb_ngaykhoihanh"  Style="{StaticResource MyStyle_DatePicker_TT}" Height="35" Width="250" />
+
+                            <TextBox x:Name="Tour_tb_songuoi" Style="{StaticResource MyStyle_TextBox_TT}" Height="35" Width="250"  Margin="0,35"/>
+                            <ComboBox x:Name="Tour_cb_duadon"  Height="35" Width="250" Style="{StaticResource MyStyle_ComboBox_TT}"
+                                  AllowDrop="True"
+                                   >
+                                <ComboBoxItem Content="Tự túc"/>
+                                <ComboBoxItem Content="Xe đưa đón" />
+                            </ComboBox>
+                            <TextBox x:Name="Tour_tb_yeucau" Style="{StaticResource MyStyle_TextBox_TT}" Height="35" Width="250"  Margin="0,35"/>
+                        </StackPanel>
+                        <Button x:Name="Tour_bt_dangky" Grid.Column="1" Content="Đăng ký" Style="{StaticResource MyStyle_Button_Xanh}" Width="120"  HorizontalAlignment="Center" VerticalAlignment="Bottom"  Margin="30,0,0,100 " Click="Tour_bt_dangky_Click"/>
+                   
+                    </Grid>
                 </Grid>
             </TabItem>
         </TabControl>
