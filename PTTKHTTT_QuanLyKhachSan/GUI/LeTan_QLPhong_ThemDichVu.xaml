@@ -19,7 +19,7 @@
                 <ColumnDefinition Width="30"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="80"/>
+                <RowDefinition Height="60"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
@@ -86,7 +86,9 @@
                         <TextBox x:Name="DV_tb_soluong" Style="{StaticResource MyStyle_TextBox_TT}" Height="35" Width="250" />
                         <DatePicker x:Name="DV_tb_thoigian"  Style="{StaticResource MyStyle_DatePicker_TT}" Height="35" Width="250" Margin="0,20"/>
                     </StackPanel>
-                    <Button x:Name="DV_bt_dat" Grid.Column="1"  Content="Đặt" Style="{StaticResource MyStyle_Button_Xanh}" Width="100"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,50"  Click="DV_bt_dat_Click"/>
+                    <Button x:Name="DV_bt_dat" Grid.Column="1"  Content="Đặt" Style="{StaticResource MyStyle_Button_Xanh}" Width="100"  HorizontalAlignment="Center" 
+                            VerticalAlignment="Bottom" Margin="0,0,0,50"  Click="DV_bt_dat_Click"/>
+                    <Label x:Name="lb_error" FontWeight="Medium" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content=""  FontSize="18"   Margin="10" Style="{StaticResource MyStyle_Label_TT}"/>
                 </Grid>
 
             </Grid>

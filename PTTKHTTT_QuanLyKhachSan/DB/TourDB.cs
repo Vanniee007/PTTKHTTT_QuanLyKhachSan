@@ -39,5 +39,6 @@ namespace PTTKHTTT_QuanLyKhachSan.DB
             }
 
         }
+       
     }
 }

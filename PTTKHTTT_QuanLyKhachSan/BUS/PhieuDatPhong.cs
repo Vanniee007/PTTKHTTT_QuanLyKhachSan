@@ -77,6 +77,10 @@ namespace PTTKHTTT_QuanLyKhachSan.BUS
         {
             return PhieuDatPhongDB.QLPhong_xempdp_LayDSPDP(MaPhong);
         }
+        public static int QLPhong_LayMaPDP(int MaPhong)
+        {
+            return PhieuDatPhongDB.QLPhong_LayMaPDP(MaPhong);
+        }
 
     }
 }

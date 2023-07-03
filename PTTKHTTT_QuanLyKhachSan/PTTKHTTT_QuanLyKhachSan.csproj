@@ -58,6 +58,7 @@
     <Compile Include="BUS\ChiTietPhieuDatPhong.cs" />
     <Compile Include="BUS\DoiTac.cs" />
     <Compile Include="BUS\KhachHang.cs" />
+    <Compile Include="BUS\PDP_DichVu.cs" />
     <Compile Include="BUS\PhieuDangKyTour.cs" />
     <Compile Include="BUS\PhieuDatPhong.cs" />
     <Compile Include="BUS\HoaDon.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="DB\DoiTacDB.cs" />
     <Compile Include="DB\KhachHangDB.cs" />
     <Compile Include="DB\DichVuDB.cs" />
+    <Compile Include="DB\PDP_DichVuDB.cs" />
     <Compile Include="DB\PhieuDangKyTourDB.cs" />
     <Compile Include="DB\PhongDB.cs" />
     <Compile Include="DB\HoaDonDB.cs" />
@@ -77,6 +79,9 @@
     <Compile Include="DB\TaiKhoanDB.cs" />
     <Compile Include="DB\PhieuDatPhongDB.cs" />
     <Compile Include="DB\TourDB.cs" />
+    <Compile Include="GUI\LeTan_DVTour_XemTour_DoiTac.xaml.cs">
+      <DependentUpon>LeTan_DVTour_XemTour_DoiTac.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\LeTan_Main.xaml.cs">
       <DependentUpon>LeTan_Main.xaml</DependentUpon>
     </Compile>
@@ -90,6 +95,10 @@
       <DependentUpon>LeTan_ThemPhieuDatPhong.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\SupportFunction.cs" />
+    <Page Include="GUI\LeTan_DVTour_XemTour_DoiTac.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\LeTan_QLPhong_ThemDichVu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

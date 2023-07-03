@@ -21,10 +21,11 @@ namespace PTTKHTTT_QuanLyKhachSan.GUI
     /// 
     public partial class LeTan_QLPhong_ThemDichVu : Window
     {
-        public int MaPhong;
-        public LeTan_QLPhong_ThemDichVu(int MaPhong_)
+        public int MaPDP_=-1;
+        public int MaDV_=-1;
+        public LeTan_QLPhong_ThemDichVu(int MaPDP_v)
         {
-            MaPhong = MaPhong_;
+            MaPDP_ = MaPDP_v;
             InitializeComponent();
         }
 
@@ -32,7 +33,7 @@ namespace PTTKHTTT_QuanLyKhachSan.GUI
         {
             try
             {
-              
+                DVDat_datagird.ItemsSource = DichVu.TT_LayDSDichVu_PDP(MaPDP_);
             }
             catch
             {
@@ -42,13 +43,13 @@ namespace PTTKHTTT_QuanLyKhachSan.GUI
         }
         private void DVDat_datagird_Loaded(object sender, RoutedEventArgs e)
         {
-
+            DVDat_HienThi();
         }
         public void DV_HienThi()
         {
             try
             {
-                lb_title.Content = "Dịch vụ phòng: " + MaPhong.ToString();
+                lb_title.Content = "Dịch vụ của PDP: " + MaPDP_.ToString();
                 DV_datagird.ItemsSource = DichVu.QLPhong_tdv_LayDSDichVu();
             }
             catch
@@ -69,7 +70,7 @@ namespace PTTKHTTT_QuanLyKhachSan.GUI
                 if (DV_datagird.SelectedItem != null)
                 {
                     DichVu row = (DichVu)DV_datagird.SelectedItem;
-
+                    MaDV_ = row.MADV;
                     
                     DV_tb_tendv.Text = row.TENDV;
 
@@ -81,7 +82,44 @@ namespace PTTKHTTT_QuanLyKhachSan.GUI
 
         private void DV_bt_dat_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                //Chưa chọn dịch vụ
+                if ((DV_tb_tendv.Text).Length == 0)
+                {
+                    SupportFunction.ShowError(lb_error, "Bạn chưa chọn dịch vụ");
+                    return;
+                }
+                else
+                {
+                    //Số lượng không hợp lệ
+                    if (!InputValidation.ValidNumberic(DV_tb_soluong.Text))
+                    {
+                        SupportFunction.ShowError(lb_error, "Số lượng bạn nhập không hợp lệ");
+                        return;
+                    }
+                        PDP_DichVu dv = new PDP_DichVu
+                    {
+                        MADV = MaDV_,
+                        MAPDP = MaPDP_,
+                        SOLUONG = int.Parse(DV_tb_soluong.Text),
+                        THOIGIAN = DV_tb_thoigian.Text,
+                    };
+                    if (PDP_DichVu.QLPhong_DatDV(dv) == true)
+                    {
+                        SupportFunction.ShowSuccess(lb_error, "Đặt thành công");
+                        DVDat_HienThi();
+                    }
+                    else
+                    {
+                        SupportFunction.ShowError(lb_error, "Đặt thất bại");
+                    }
+                }
+            }
+            catch
+            {
 
+            }
         }
       
         private void Windows_MouseDown(object sender, MouseButtonEventArgs e)

@@ -35,5 +35,9 @@ namespace PTTKHTTT_QuanLyKhachSan.BUS
             }
             catch { return false; }
         }
+        public static bool DVTour_KiemTraPDKTour(PhieuDangKyTour p)
+        {
+            return true;
+        }
     }
 }
