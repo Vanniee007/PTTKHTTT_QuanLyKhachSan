@@ -11,8 +11,8 @@ namespace PTTKHTTT_QuanLyKhachSan.BUS
     public class HoaDon
     {
         public int MAHD { get; set; }
-        public string NGAYLAP { get; set; }
         public int MAPDP { get; set; }
+        public string NGAYLAP { get; set; }
         public int TONGTIEN { get; set; }
         public string TINHTRANGTT { get; set; }
         public int MANV { get; set; }

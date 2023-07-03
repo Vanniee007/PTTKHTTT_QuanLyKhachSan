@@ -29,7 +29,6 @@ namespace PTTKHTTT_QuanLyKhachSan.BUS
         }
         public static bool PDP_KiemTraThongTinKhach(KhachHang khachHang)
         {
-
             if (!InputValidation.ValidName(khachHang.HOTEN) || !InputValidation.ValidNumberic(khachHang.CCCD) || !InputValidation.ValidPhoneNumber(khachHang.SDT) || !InputValidation.ValidEmail(khachHang.EMAIL) || !InputValidation.ValidNumberic(khachHang.FAXID))
             {
                 return false;
