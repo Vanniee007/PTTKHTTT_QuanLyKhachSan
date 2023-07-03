@@ -324,6 +324,7 @@ namespace PTTKHTTT_QuanLyKhachSan.GUI
         { 
             try
             {
+               
                 PhieuDangKyTour pdk = new PhieuDangKyTour
                 {
                     MAPDKTOUR = -1,
