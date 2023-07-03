@@ -46,6 +46,7 @@ namespace PTTKHTTT_QuanLyKhachSan.DB
         {
             try
             {
+
                 string sql = "INSERT INTO PHIEUDANGKYTOUR ( THGIANKHOIHANH, SONGUOITHGIA, DICHVUDUADON, YEUCAUDACBIET, MAKH, MATOUR) VALUES('" + pdk.THGIANKHOIHANH + "'," +
                             "'" + pdk.SONGUOITHGIA + "',N'" + pdk.DICHVUDUADON + "',N'" + pdk.YEUCAUDACBIET + "','" + pdk.MAKH + "','" + pdk.MATOUR + "')";
                 DataTable tb = DBConnect.SQL_select(sql);
