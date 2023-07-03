@@ -40,11 +40,11 @@
                                   IsReadOnly="True"
                                   SelectionChanged="DV_datagird_SelectionChanged"
                                   Loaded="DV_datagird_Loaded"
-                                  Background="White" Margin="10,10,10,10" FontSize="18">
+                                  Background="White" Margin="10,10,10,10" FontSize="16">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Mã dịch vụ" Binding="{Binding MADV}"  Width="1*" />
                         <DataGridTextColumn Header="Tên DV" Binding="{Binding TENDV}"   Width="2*" />
-                        <DataGridTextColumn Header="Giá" Binding="{Binding MADV}"   Width="*"/>
+                        <DataGridTextColumn Header="Giá" Binding="{Binding GIA}"   Width="*"/>
                         <DataGridTextColumn Header="Mô tả" Binding="{Binding MOTA}"   Width="1.5*"/>
                         <DataGridTextColumn Header="Địa điểm" Binding="{Binding DIADIEM}"   Width="1.5*" />
                        
@@ -62,7 +62,7 @@
                                   AutoGenerateColumns="False"
                                   IsReadOnly="True"
                                   Loaded="DVDat_datagird_Loaded"
-                                  Background="White"  FontSize="18" Margin="10,10,10,10">
+                                  Background="White"  FontSize="16" Margin="10,10,10,10">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Tên DV" Binding="{Binding TENDV}"  Width="*"/>
                         <DataGridTextColumn Header="Giá" Binding="{Binding GIA}"  Width="*"/>
