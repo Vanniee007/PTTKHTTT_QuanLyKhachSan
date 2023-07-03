@@ -37,7 +37,7 @@
                                   AutoGenerateColumns="False"
                                   IsReadOnly="True"
                                   Loaded="QLPhong_xempdp_datagird_Loaded"
-                                  Background="White" Margin="10,10,10,10">
+                                  Background="White" FontSize="16"  Margin="10,10,10,10">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Mã PDP" Binding="{Binding MAPDP}" Width="*"/>
                         <DataGridTextColumn Header="Ngày lập" Binding="{Binding NGAYLAP, StringFormat=\{0:dd/MM/yyyy\}}" Width="*"/>
