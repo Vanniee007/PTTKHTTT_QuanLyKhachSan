@@ -60,7 +60,6 @@ namespace PTTKHTTT_QuanLyKhachSan.GUI
             }
             return null;
         }
-
         private void DP_datagird_Loaded(object sender, RoutedEventArgs e)
         {
             Phong_HienThi();
@@ -77,8 +76,9 @@ namespace PTTKHTTT_QuanLyKhachSan.GUI
 
         private void Button_DatPhong_Click(object sender, RoutedEventArgs e)
         {
+
             KhachHang k = new KhachHang { };
-            KhachHang kh = new KhachHang { MAKH = -1, HOTEN = tb_hoten.Text, CCCD = tb_cccd.Text, SDT = tb_sdt.Text, EMAIL = tb_email.Text, DIACHI = tb_diachi.Text, FAXID =tb_faxid.Text };
+            KhachHang kh = new KhachHang { MAKH = -1, HOTEN = tb_hoten.Text, CCCD = tb_cccd.Text, SDT = tb_sdt.Text, EMAIL = tb_email.Text, DIACHI = tb_diachi.Text, FAXID = tb_faxid.Text };
             if (!KhachHang.PDP_KiemTraThongTinKhach(kh))
             {
                 SupportFunction.ShowError(lb_error, "Thông tin khách hàng không hợp lệ"); return;
@@ -97,6 +97,7 @@ namespace PTTKHTTT_QuanLyKhachSan.GUI
                 case -2:
                     SupportFunction.ShowError(lb_error, "Chọn tối thiểu 1 phòng"); break;
             }
+            Phong_HienThi();
         }
 
         private void bt_TimKiemKH_Click(object sender, RoutedEventArgs e)
@@ -130,6 +131,11 @@ namespace PTTKHTTT_QuanLyKhachSan.GUI
         {
             tb_NgayNhan.Text = DateTime.Now.ToString();
             tb_NgayTra.Text = DateTime.Now.AddDays(1).ToString();
+        }
+
+        private void tb_NgayTra_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            Phong_HienThi();
         }
     }
 }
