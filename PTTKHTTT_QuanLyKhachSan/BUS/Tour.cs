@@ -25,5 +25,9 @@ namespace PTTKHTTT_QuanLyKhachSan.BUS
             }
             return ds;
         }
+        public static List<Tour> DVTour_LayDSTour()
+        {
+            return TourDB.DVTour_LayDSTour();
+        }
     }
 }

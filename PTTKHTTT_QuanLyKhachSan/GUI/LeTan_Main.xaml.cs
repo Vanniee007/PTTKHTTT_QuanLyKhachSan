@@ -25,6 +25,8 @@ namespace PTTKHTTT_QuanLyKhachSan.GUI
     {
         string username;
         public int MaNV = 1;
+        public int MaPhong=-1;
+        public int MaPDP;
         public LeTan_Main(string username_)
         {
             InitializeComponent();
@@ -94,150 +96,7 @@ namespace PTTKHTTT_QuanLyKhachSan.GUI
         }
 
 
-        /*=================================================TABITEM: QUẢN LÝ PHÒNG =================================================
-         ==================================================================================================
-        ==================================================================================================
-        ==================================================================================================*/
-        private void Tk_tb_search_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (!string.IsNullOrEmpty(Tk_tb_search.Text) && Tk_tb_search.Text.Length > 0)
-            {
-                Tk_lb_search.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                Tk_lb_search.Visibility = Visibility.Visible;
-            }
-            // Kiểm tra xem phím Enter có được nhấn hay không
-          
-        }
-        private void QLPhong_HienThi()
-        {
-            try
-            {
-                QLPhong_datagird.ItemsSource = Phong.QLPhong_LayDSPhong();
-            }
-            catch { }
-        }
-        private void QLPhong_datagird_Loaded(object sender, RoutedEventArgs e)
-        {
-
-            QLPhong_HienThi();
-        }
-
-        private void DA_bt_capnhat_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (QLPhong_datagird.SelectedIndex.ToString() != null)
-                {
-                    Phong row = (Phong)QLPhong_datagird.SelectedItem;
-                    if (row != null)
-                    {
-                        int kq = Phong.QLPhong_UpdateTinhTrangPhong(Convert.ToInt32(row.MAPHONG), QLPhong_tb_tthientai.Text, QLPhong_cb_tinhtrangmoi.Text);
-                        switch (kq)
-                        {
-                            case 1:
-                                SupportFunction.ShowSuccess(lb_error, "Đổi trạng thái thành công");
-                                QLPhong_HienThi();
-                                QLPhong_tb_tthientai.Text = QLPhong_cb_tinhtrangmoi.Text;
-                                if(QLPhong_tb_tthientai.Text=="Đang dùng")
-                                {
-                                    KhachHang kh = KhachHang.QLPhong_LayThongTinKhach_PDP(row.MAPHONG);
-                                    QLPhong_tb_tenkhach.Text = kh.HOTEN;
-                                    QLPhong_tb_cccd.Text = kh.CCCD;
-                                }
-                                break;
-                            case 0:
-                                SupportFunction.ShowError(lb_error, "Phòng chưa được thanh toán");
-                                break;
-                            case -1:
-                                SupportFunction.ShowError(lb_error, "Đổi trạng thái thất bại");
-                                break;
-                            case -2:
-                                SupportFunction.ShowError(lb_error, "Hiện tại phòng chưa được đặt");
-                                break;
-                            case -3:
-                                SupportFunction.ShowError(lb_error, "Không được, chỉ được sử dụng phòng khi đã dọn");
-                                break;
-                            case -4:
-                                SupportFunction.ShowError(lb_error, "Tình trạng cũ giống tình trạng mới");
-                                break;
-                            
-                            default:
-                                // Xử lý khi kq không rơi vào bất kỳ trường hợp nào trên
-                                break;
-                        }
-                    }
-                    else
-                    {
-                        SupportFunction.ShowError(lb_error, "Vui lòng chọn phòng bạn muốn cập nhật.");
-                    }
-                }
-             
-           
-            }
-            catch
-            {
-
-            }
-            
-        }
-
-        private void Da_bt_lichdat_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (QLPhong_datagird.SelectedIndex.ToString() != null)
-                {
-                    Phong row = (Phong)QLPhong_datagird.SelectedItem;
-                    if (row != null)
-                    {
-
-                        LeTan_QLPhong_XemPDP qlp = new LeTan_QLPhong_XemPDP(row.MAPHONG);
-                        qlp.ShowDialog();
-                    }
-                    else
-                    {
-                        SupportFunction.ShowError(lb_error, "Vui lòng chọn phòng bạn muốn xem lịch.");
-                    }
-                }
-              
-
-            }
-            catch
-            {
-
-            }
-        }
-
-        private void DA_bt_dichvu_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (QLPhong_datagird.SelectedIndex.ToString() != null)
-                {
-                    Phong row = (Phong)QLPhong_datagird.SelectedItem;
-                    if (row != null)
-                    {
-
-                        LeTan_QLPhong_ThemDichVu tdv = new LeTan_QLPhong_ThemDichVu(row.MAPHONG);
-                        tdv.ShowDialog();
-                    }
-                    else
-                    {
-                        SupportFunction.ShowError(lb_error, "Vui lòng chọn phòng bạn muốn đặt dịch vụ.");
-                    }
-                }
-
-
-            }
-            catch
-            {
-
-            }
-        }
-
+      
         private void TT_datagird_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
@@ -271,6 +130,55 @@ namespace PTTKHTTT_QuanLyKhachSan.GUI
         {
 
         }
+        private void TT_tb_thanhtoan_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (HoaDon.TT_ThanhToanHoaDon(TT_tb_MaHD.Text))
+                {
+                    SupportFunction.ShowSuccess(lb_error, "Thanh toán hoá đơn thành công");
+                    TT_datagird.ItemsSource = HoaDon.LayDanhSachHoaDon();
+                }
+                else
+                {
+                    SupportFunction.ShowError(lb_error, "Thanh toán hoá đơn thất bại");
+                }
+
+            }
+            catch { }
+        }
+
+        /*=================================================TABITEM: QUẢN LÝ PHÒNG =================================================
+       ==================================================================================================
+      ==================================================================================================
+      ==================================================================================================*/
+        private void Tk_tb_search_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(Tk_tb_search.Text) && Tk_tb_search.Text.Length > 0)
+            {
+                Tk_lb_search.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                Tk_lb_search.Visibility = Visibility.Visible;
+            }
+            // Kiểm tra xem phím Enter có được nhấn hay không
+
+        }
+        private void QLPhong_HienThi()
+        {
+            try
+            {
+                QLPhong_datagird.ItemsSource = Phong.QLPhong_LayDSPhong();
+            }
+            catch { }
+        }
+        private void QLPhong_datagird_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            QLPhong_HienThi();
+        }
+
 
         private void Tk_tb_search_PreviewKeyDown(object sender, KeyEventArgs e)
         {
@@ -294,6 +202,7 @@ namespace PTTKHTTT_QuanLyKhachSan.GUI
                     Phong row = (Phong)QLPhong_datagird.SelectedItem;
                     if (row != null)
                     {
+                        MaPhong = row.MAPHONG;
                         QLPhong_tb_tthientai.Text = row.TINHTRANG;
                         QLPhong_label.Content = "Phòng: " + row.MAPHONG;
                         if(row.TINHTRANG=="Đang dùng")
@@ -302,7 +211,7 @@ namespace PTTKHTTT_QuanLyKhachSan.GUI
                             KhachHang kh = KhachHang.QLPhong_LayThongTinKhach_PDP(row.MAPHONG);
                             QLPhong_tb_tenkhach.Text = kh.HOTEN;
                             QLPhong_tb_cccd.Text = kh.CCCD;
-
+                            MaPDP = PhieuDatPhong.QLPhong_LayMaPDP(row.MAPHONG);
 
 
                         }
@@ -317,26 +226,127 @@ namespace PTTKHTTT_QuanLyKhachSan.GUI
             catch
             { }
         }
-        private void TT_tb_Them_Click(object sender, RoutedEventArgs e)
-        {
-        }
 
-        private void TT_tb_thanhtoan_Click(object sender, RoutedEventArgs e)
+        private void QLPhong_bt_capnhat_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                if (HoaDon.TT_ThanhToanHoaDon(TT_tb_MaHD.Text))
+                if (QLPhong_cb_tinhtrangmoi.Text.Length == 0)
                 {
-                    SupportFunction.ShowSuccess(lb_error,"Thanh toán hoá đơn thành công"); 
-                    TT_datagird.ItemsSource = HoaDon.LayDanhSachHoaDon();
+                    SupportFunction.ShowError(lb_error, "Vui lòng chọn tình trạng mới.");
+                    return;
                 }
-                else {
-                    SupportFunction.ShowError(lb_error, "Thanh toán hoá đơn thất bại");
+                if (MaPhong != -1)
+                {
+                    int kq = Phong.QLPhong_UpdateTinhTrangPhong(MaPhong, QLPhong_tb_tthientai.Text, QLPhong_cb_tinhtrangmoi.Text);
+                    switch (kq)
+                    {
+                        case 1:
+                            SupportFunction.ShowSuccess(lb_error, "Đổi trạng thái thành công");
+                            QLPhong_HienThi();
+                            QLPhong_tb_tthientai.Text = QLPhong_cb_tinhtrangmoi.Text;
+                            if (QLPhong_tb_tthientai.Text == "Đang dùng")
+                            {
+                                KhachHang kh = KhachHang.QLPhong_LayThongTinKhach_PDP(MaPhong);
+                                QLPhong_tb_tenkhach.Text = kh.HOTEN;
+                                QLPhong_tb_cccd.Text = kh.CCCD;
+                            }
+                            break;
+                        case 0:
+                            SupportFunction.ShowError(lb_error, "Phòng chưa được thanh toán");
+                            break;
+                        case -1:
+                            SupportFunction.ShowError(lb_error, "Đổi trạng thái thất bại");
+                            break;
+                        case -2:
+                            SupportFunction.ShowError(lb_error, "Hiện tại phòng chưa được đặt");
+                            break;
+                        case -3:
+                            SupportFunction.ShowError(lb_error, "Không được, chỉ được sử dụng phòng khi đã dọn");
+                            break;
+                        case -4:
+                            SupportFunction.ShowError(lb_error, "Tình trạng cũ giống tình trạng mới");
+                            break;
+
+                        default:
+                            // Xử lý khi kq không rơi vào bất kỳ trường hợp nào trên
+                            break;
+                    }
+                }
+                else
+                {
+                    SupportFunction.ShowError(lb_error, "Vui lòng chọn phòng bạn muốn cập nhật.");
                 }
 
+
             }
-            catch { }
+            catch
+            {
+
+            }
         }
+
+
+
+        private void QLPhong_bt_lichdat_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (QLPhong_datagird.SelectedIndex.ToString() != null)
+                {
+                    Phong row = (Phong)QLPhong_datagird.SelectedItem;
+                    if (row != null)
+                    {
+
+                        LeTan_QLPhong_XemPDP qlp = new LeTan_QLPhong_XemPDP(row.MAPHONG);
+                        qlp.ShowDialog();
+                    }
+                    else
+                    {
+                        SupportFunction.ShowError(lb_error, "Vui lòng chọn phòng bạn muốn xem lịch.");
+                    }
+                }
+
+
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void QLPhong_bt_dichvu_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if ((QLPhong_tb_tthientai.Text).Length == 0)
+                {
+                    SupportFunction.ShowError(lb_error, "Vui lòng chọn phòng bạn muốn đặt dịch vụ.");
+                    return;
+                }
+                else
+                {
+                    if(QLPhong_tb_tthientai.Text=="Đang dùng")
+                    {
+                        LeTan_QLPhong_ThemDichVu tdv = new LeTan_QLPhong_ThemDichVu(MaPDP);
+                        tdv.ShowDialog();
+                    }
+                    else
+                    {
+                        SupportFunction.ShowError(lb_error, "Phòng chưa có người dùng.");
+                        return;
+                    }
+                }
+               
+
+
+            }
+            catch
+            {
+
+            }
+        }
+
         /*=================================================TABITEM: DỊCH VỤ TOUR =================================================
         ==================================================================================================
        ==================================================================================================
@@ -345,6 +355,17 @@ namespace PTTKHTTT_QuanLyKhachSan.GUI
         { 
             try
             {
+                if((Tour_tb_ngaykhoihanh.Text).Length==0|| (Tour_tb_songuoi.Text).Length == 0
+                    || (Tour_cb_makh.Text).Length == 0 || (Tour_cb_matour.Text).Length == 0 || (Tour_cb_duadon.Text).Length == 0)
+                {
+                    SupportFunction.ShowError(lb_error, "Chỉ được để trống trường yêu cầu");
+                    return;
+                }
+                if (!InputValidation.ValidNumberic(Tour_tb_songuoi.Text))
+                {
+                    SupportFunction.ShowError(lb_error, "Số người bạn nhập không hợp lệ");
+                    return;
+                }
                
                 PhieuDangKyTour pdk = new PhieuDangKyTour
                 {
@@ -383,5 +404,13 @@ namespace PTTKHTTT_QuanLyKhachSan.GUI
         {
             DVTour_HienThi();
         }
+
+        private void DVTour_xemtour_Click(object sender, RoutedEventArgs e)
+        {
+            LeTan_DVTour_XemTour_DoiTac xt = new LeTan_DVTour_XemTour_DoiTac();
+            xt.ShowDialog();
+        }
+
+   
     }
 }
