@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Reflection.Emit;
+using System.Security;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using PTTKHTTT_QuanLyKhachSan.BUS;
 namespace PTTKHTTT_QuanLyKhachSan.DB
 {
@@ -35,9 +38,42 @@ namespace PTTKHTTT_QuanLyKhachSan.DB
             {
                 return null;
             }
-
+        }
+        public static int PDP_ThemHoaDon(int MaPDP)
+        {
+            try
+            {
+                return int.Parse(DBConnect.SQL_select("EXEC USP_LT_THANHTOANCOC @MAPDP = " + MaPDP.ToString()).Rows[0][0].ToString());
+            }
+            catch
+            {
+                return -1;
+            }
         }
 
+        public static bool CapNhatTinhTrang(string MaHD)
+        {
+            try
+            {
+                DBConnect.SQL_select("update HoaDon set TINHTRANGTT = N'Đã thanh toán' where MaHD = " + MaHD);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public static string TT_TongTienHoaDon(string MaHD)
+        {
+            try
+            {
+                return DBConnect.SQL_select("SELECT dbo.uf_LT_CNTONGTIEN_HOADON("+ MaHD.ToString() + ")").Rows[0][0].ToString();
+            }
+            catch
+            {
+                return "0";
+            }
+        }
     }
 }
 
