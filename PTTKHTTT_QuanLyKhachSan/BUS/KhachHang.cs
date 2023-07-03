@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Reflection.Emit;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +15,7 @@ namespace PTTKHTTT_QuanLyKhachSan.BUS
         public string CCCD { get; set; }
         public string SDT { get; set; }
         public string DIACHI { get; set; }
-        public int FAXID { get; set; }
+        public string FAXID { get; set; }
         public string EMAIL { get; set; }
         public KhachHang()
         {
@@ -24,12 +24,29 @@ namespace PTTKHTTT_QuanLyKhachSan.BUS
             CCCD = "";
             SDT = "";
             DIACHI = "";
-            FAXID = -1;
-            EMAIL = "";
+            FAXID = "";
+            EMAIL= "";
+        }
+        public static bool PDP_KiemTraThongTinKhach(KhachHang khachHang)
+        {
+
+            if (!InputValidation.ValidName(khachHang.HOTEN) || !InputValidation.ValidPhoneNumber(khachHang.CCCD) || !InputValidation.ValidPhoneNumber(khachHang.SDT) || !InputValidation.ValidEmail(khachHang.EMAIL) || !InputValidation.ValidNumberic(khachHang.FAXID))
+            {
+                return false;
+            }
+            return true;
         }
         public static KhachHang TT_LayThongTinKhach_PDP(int MAPDP)
         {
             return KhachHangDB.TT_LayThongTinKhach(MAPDP);
+        }
+        public static KhachHang PDP_LayThongTinKhach(string keyword)
+        {
+            return KhachHangDB.PDP_ThongTinKH(keyword);
+        }
+        public static int PDP_ThemKhach(KhachHang khach)
+        {
+            return KhachHangDB.PDP_ThemKhachHang(khach);
         }
         public static KhachHang QLPhong_LayThongTinKhach_PDP(int MaPhong)
         {

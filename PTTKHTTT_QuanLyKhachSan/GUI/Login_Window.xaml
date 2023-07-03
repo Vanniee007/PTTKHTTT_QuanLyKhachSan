@@ -8,10 +8,10 @@
         Title="PTTKHTTT_QuanLyKhachSan" 
         WindowStyle="None"
         
-        Height="680" Width="1200">
+        Height="700" Width="1110">
     <Window.Resources>
         <Style x:Key="Login_Button"  TargetType="Button">
-            <Setter Property="Background" Value="#FFC26F"/>
+            <Setter Property="Background" Value="Navy"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -80,7 +80,7 @@
     <Grid KeyDown="Login_KeyDown"  MouseDown="Windows_MouseDown" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50"/>
-            <ColumnDefinition Width="1.6*"/>
+            <ColumnDefinition Width="2.2*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -88,7 +88,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Image Source="images/background.jpg"  Grid.ColumnSpan="3" Grid.RowSpan="2"/>
+        <Image Source="images/background2.jpg"  Grid.ColumnSpan="3" Grid.RowSpan="2"/>
         <Image Source="images/logo_hcmus.png" Height="180" Margin="0,0,0,40" Grid.Column="1"/>
 
         <!--Nửa bên trái-->
@@ -140,7 +140,7 @@
         </Grid>
 
         <!--Copy right-->
-        <Label Content="Copyright 2023 by Group 20H3T-04 - ATBMHTTT" FontSize="12" Margin="0,0,10,10" Foreground="Navy"  Style="{StaticResource LoginStyle_TitleLabel}" 
+        <Label Content="Copyright @2023 by Group PTTKHTTT" FontSize="16" Margin="0,0,10,10" Foreground="LightCyan"  Style="{StaticResource LoginStyle_TitleLabel}" 
                            HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Column="2" Grid.Row="1"/>
         <Grid Grid.Column="2" Grid.Row="0">
 
