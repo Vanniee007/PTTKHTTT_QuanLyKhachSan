@@ -97,7 +97,7 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="30"/>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="600"/>
                         <ColumnDefinition Width="30"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
@@ -122,14 +122,14 @@
                                   IsReadOnly="True"
                                   SelectionChanged="TT_datagird_SelectionChanged"
                                   Loaded="TT_datagird_Loaded"
-                                  Background="White" Margin="10,10,10,10">
+                                  Background="White" Margin="10,0">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Mã HĐ" Binding="{Binding MAHD}" />
                                 <DataGridTextColumn Header="Mã PĐP" Binding="{Binding MAPDP}" />
                                 <DataGridTextColumn Header="Ngày lập" Binding="{Binding NGAYLAP, StringFormat=\{0:dd/MM/yyyy\}}" />
                                 <DataGridTextColumn Header="Tình trạng" Binding="{Binding TINHTRANGTT}"  Width="*"/>
                                 <DataGridTextColumn Header="Mã NV" Binding="{Binding MANV}" />
-                                <DataGridTextColumn Header="Tổng" Binding="{Binding TONGTIEN}" />
+                                <!--<DataGridTextColumn Header="Tổng" Binding="{Binding TONGTIEN}" />-->
                             </DataGrid.Columns>
                         </DataGrid >
                     </Grid>
@@ -143,7 +143,7 @@
                         <DataGrid x:Name="TT_CTPDP_datagird" Grid.Row="0" 
                                   AutoGenerateColumns="False"
                                   IsReadOnly="True"
-                                  Background="White" Margin="10,10,10,10">
+                                  Background="White" Margin="0,0">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Mã phòng" Binding="{Binding MAPHONG}"  Width="*"/>
                                 <DataGridTextColumn Header="Loại phòng" Binding="{Binding LOAIPHONG}"  Width="*"/>
@@ -154,30 +154,45 @@
                         <DataGrid x:Name="TT_DVP_datagird" Grid.Row="1" 
                                   AutoGenerateColumns="False"
                                   IsReadOnly="True"
-                                  Background="White" Margin="10">
+                                  Background="White" Margin="0,10">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Tên dịch vụ" Binding="{Binding TENDV}"/>
-                                <DataGridTextColumn Header="SL" Binding="{Binding SOLUONG}"/>
                                 <DataGridTextColumn Header="Thời gian" Binding="{Binding THOIGIAN, StringFormat=\{0:dd/MM/yyyy\}}" />
                                 <DataGridTextColumn Header="Địa điểm" Binding="{Binding DIADIEM}" Width="*"/>
+                                <DataGridTextColumn Header="Giá" Binding="{Binding GIA}"/>
+                                <DataGridTextColumn Header="SL" Binding="{Binding SOLUONG}"/>
                             </DataGrid.Columns>
                         </DataGrid >
-                        <Grid Grid.Row="2">
+                        <Grid Grid.Row="2" >
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="70"/>
-                                <ColumnDefinition Width="200*"/>
+                                <ColumnDefinition Width="70*"/>
+                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="200"/>
                             </Grid.ColumnDefinitions>
                             <StackPanel HorizontalAlignment="Right" Grid.Column="0" >
                                 <Label Content="Họ tên" Height="35" Style="{StaticResource MyStyle_Label_TT}"/>
                                 <Label Content="CCCD" Height="35" Style="{StaticResource MyStyle_Label_TT}"  Margin="0,10"/>
                                 <Label Content="SĐT" Height="35" Style="{StaticResource MyStyle_Label_TT}"/>
                             </StackPanel>
+                            
                             <StackPanel Grid.Column="1">
-                                <TextBox x:Name="TT_tb_hoten" Style="{StaticResource MyStyle_ReadOnlyTextbox_TT}" Height="35" Width="250"/>
-                                <TextBox x:Name="TT_tb_cccd" Style="{StaticResource MyStyle_ReadOnlyTextbox_TT}" Height="35" Width="250" Margin="0,10"/>
-                                <TextBox x:Name="TT_tb_sdt" Style="{StaticResource MyStyle_ReadOnlyTextbox_TT}" Height="35" Width="250"/>
+                                <TextBox x:Name="TT_tb_hoten" Style="{StaticResource MyStyle_ReadOnlyTextbox_TT}" Height="35" Width="200"/>
+                                <TextBox x:Name="TT_tb_cccd" Style="{StaticResource MyStyle_ReadOnlyTextbox_TT}" Height="35" Width="200" Margin="0,10"/>
+                                <TextBox x:Name="TT_tb_sdt" Style="{StaticResource MyStyle_ReadOnlyTextbox_TT}" Height="35" Width="200"/>
                             </StackPanel>
-                            <Button x:Name="TT_tb_Them" Grid.Column="1" Content="Thanh toán" Style="{StaticResource MyStyle_Button_Xanh}" Width="120"  HorizontalAlignment="Right" VerticalAlignment="Top"  Margin="10,0 " Click="TT_tb_Them_Click"/>
+
+
+                            <StackPanel HorizontalAlignment="Right" Grid.Column="2" >
+                                <Label Content="Mã HD" Height="35" Style="{StaticResource MyStyle_Label_TT}"/>
+                                <Label Content="Tổng tiền" Height="35" Style="{StaticResource MyStyle_Label_TT}"  Margin="0,10"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="3">
+                                <TextBox x:Name="TT_tb_MaHD" Style="{StaticResource MyStyle_ReadOnlyTextbox_TT}" Height="35" Width="200"/>
+                                <TextBox x:Name="TT_lb_tongtien" Style="{StaticResource MyStyle_ReadOnlyTextbox_TT}" Height="35" Width="200" Margin="0,10"/>
+                                <Button x:Name="TT_tb_thanhtoan" Grid.Column="3" Content="Thanh toán" Style="{StaticResource MyStyle_Button_Xanh}"  Width="150"  HorizontalAlignment="Right" VerticalAlignment="Top"  Click="TT_tb_thanhtoan_Click"/>
+                            </StackPanel>
+
                         </Grid>
                     </Grid>
 

@@ -23,6 +23,7 @@ namespace PTTKHTTT_QuanLyKhachSan.GUI
     public partial class LeTan_Main : Window
     {
         string username;
+        public int MaNV = 1;
         public LeTan_Main(string username_)
         {
             InitializeComponent();
@@ -192,14 +193,14 @@ namespace PTTKHTTT_QuanLyKhachSan.GUI
                 if (TT_datagird.SelectedItem != null)
                 {
                     HoaDon row = (HoaDon)TT_datagird.SelectedItem;
-
                     TT_CTPDP_datagird.ItemsSource = Phong.LayDSPhong(row.MAPDP);
                     TT_DVP_datagird.ItemsSource = DichVu.TT_LayDSDichVu_PDP(row.MAPDP);
                     KhachHang kh = KhachHang.TT_LayThongTinKhach_PDP(row.MAPDP);
                     TT_tb_hoten.Text = kh.HOTEN;
                     TT_tb_cccd.Text = kh.CCCD;
                     TT_tb_sdt.Text = kh.SDT;
-
+                    TT_tb_MaHD.Text = row.MAHD.ToString();
+                    TT_lb_tongtien.Text = HoaDon.LayTongTien(row.MAHD.ToString());
                 }
             }
             catch
@@ -247,7 +248,23 @@ namespace PTTKHTTT_QuanLyKhachSan.GUI
         }
         private void TT_tb_Them_Click(object sender, RoutedEventArgs e)
         {
+        }
 
+        private void TT_tb_thanhtoan_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (HoaDon.TT_ThanhToanHoaDon(TT_tb_MaHD.Text))
+                {
+                    SupportFunction.ShowSuccess(lb_error,"Thanh toán hoá đơn thành công"); 
+                    TT_datagird.ItemsSource = HoaDon.LayDanhSachHoaDon();
+                }
+                else {
+                    SupportFunction.ShowError(lb_error, "Thanh toán hoá đơn thất bại");
+                }
+
+            }
+            catch { }
         }
     }
 }

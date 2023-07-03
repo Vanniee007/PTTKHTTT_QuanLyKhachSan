@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using PTTKHTTT_QuanLyKhachSan.DB;
 namespace PTTKHTTT_QuanLyKhachSan.BUS
 {
@@ -23,6 +24,18 @@ namespace PTTKHTTT_QuanLyKhachSan.BUS
         {
             return HoaDonDB.LayDanhSachTatCa();
         }
-
+        public static int ThemHoaDon(int MaPDP)
+        {
+            
+            return HoaDonDB.PDP_ThemHoaDon(MaPDP);
+        }
+        public static string LayTongTien(string MaHD)
+        {
+            return HoaDonDB.TT_TongTienHoaDon(MaHD);
+        }
+        public static bool TT_ThanhToanHoaDon(string MaHD)
+        {
+            return HoaDonDB.CapNhatTinhTrang(MaHD);
+        }
     }
 }

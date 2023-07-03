@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Media.Animation;
 using PTTKHTTT_QuanLyKhachSan.BUS;
 namespace PTTKHTTT_QuanLyKhachSan.DB
 {
@@ -21,7 +22,7 @@ namespace PTTKHTTT_QuanLyKhachSan.DB
                     ds.Add(new PhieuDatPhong
                     {
                         MAPDP = (int)row["MAPDP"],
-                        NGAYLAP = SupportFunction.FormatShortDate(row["NGAYLAP"].ToString()),
+                        NGAYLAP = row["NGAYLAP"].ToString(),
                         NGAYNHANPHONG = SupportFunction.FormatShortDate(row["NGAYNHANPHONG"].ToString()),
                         NGAYTRAPHONG = SupportFunction.FormatShortDate(row["NGAYTRAPHONG"].ToString()),
                         MAKH = (int)row["MAKH"],
@@ -36,7 +37,19 @@ namespace PTTKHTTT_QuanLyKhachSan.DB
             }
 
         }
-         
+
+        public static int PDP_ThemPhieuDatPhong(PhieuDatPhong phieu)
+        {
+            try
+            {
+                return int.Parse(DBConnect.SQL_select("EXEC USP_LT_TAOPHIEUDATPHONG '" + phieu.NGAYNHANPHONG + "', '" + phieu.NGAYTRAPHONG + "', " + phieu.MAKH + ", " + phieu.MANV).Rows[0][0].ToString());
+            }
+            catch
+            {
+                return -1;
+            }
+        }
+
 
 
     }
