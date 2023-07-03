@@ -19,11 +19,25 @@ namespace PTTKHTTT_QuanLyKhachSan
 			// ShowMessage: Số điện thoại không hợp lệ
 			//const string regex = @"^0[34679][0-9]{8}$";
 			const string regex = @"^0[123456789][0-9]{8}$";
-			bool isMatch = Regex.IsMatch(phone_number, regex);
+			bool isMatch = Regex.IsMatch(phone_number.Trim(), regex);
 			if (isMatch) { return true; }
 			else { return false; }
 		}
-		public static bool ValidDate(string date)
+        public static bool IsValidName(string name)
+        {
+            const string regex = @"^[\p{L}\s]+$";
+            bool isMatch = Regex.IsMatch(name.Trim(), regex);
+            return isMatch;
+        }
+        public static bool ValidNumberic(string input)
+        {
+            double result;
+            bool isNumeric = double.TryParse(input.Trim(), out result);
+            return isNumeric;
+        }
+
+
+        public static bool ValidDate(string date)
 		{
 			// ShowMessage: Ngày sinh không hợp lệ
 			//const string regex = @"^(?:(0[1-9]|1[0-2])[-]([0-2][1-9]|3[0-1])|(0[1-9]|1[0-2])[-](0[1-9]|1[0-9]|2[0-9])|(0[1-9]|1[0-2])[-](00[1-9]|0[1-9]|1[0-9]|2[0-9]))[-](19|20)\d\d$";
@@ -53,20 +67,17 @@ namespace PTTKHTTT_QuanLyKhachSan
         public static bool ValidName(string name)
         {
             // Kiểm tra không có ký tự đặc biệt
+			if (name.Trim().Length == 0)
+			{
+				return false;
+			}
             const string specialCharacters = @"[@!#$%^&*()<>?/\|}{~:]";
             bool hasSpecialCharacter = Regex.IsMatch(name, specialCharacters);
             if (hasSpecialCharacter)
             {
                 return false;
             }
-            // Chuẩn hóa tên theo dạng "Lê Minh Tiến" (giữa các từ chỉ có 1 khoảng trắng)
-            string[] nameParts = name.Trim().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-            string normalizedName = string.Join(" ", nameParts);
-
-            // Kiểm tra tên đã chuẩn hóa
-            const string nameRegex = @"^[a-zA-Z\s]+$";
-            bool isMatch = Regex.IsMatch(normalizedName, nameRegex);
-            return isMatch;
+			return true;
         }
         public static bool ValidCheckLuong_PhuCap(string input)
         {

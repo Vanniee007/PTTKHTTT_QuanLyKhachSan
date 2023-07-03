@@ -27,7 +27,7 @@ namespace PTTKHTTT_QuanLyKhachSan.DB
                 kh.CCCD = tb.Rows[0]["CCCD"].ToString();
                 kh.SDT = tb.Rows[0]["SDT"].ToString();
                 kh.DIACHI = tb.Rows[0]["DIACHI"].ToString();
-                kh.FAXID = (int)tb.Rows[0]["FAXID"];
+                kh.FAXID = tb.Rows[0]["FAXID"].ToString();
                 kh.EMAIL = tb.Rows[0]["EMAIL"].ToString();
                 return kh;
             }
@@ -36,6 +36,26 @@ namespace PTTKHTTT_QuanLyKhachSan.DB
                 return null;
             }
 
+        }
+        public static KhachHang PDP_ThongTinKH(string keyword)
+        {
+            try
+            {
+                DataTable tb = DBConnect.SQL_select("exec TimKiemKhachHang N'" + keyword + "'");
+                KhachHang kh = new KhachHang();
+                kh.MAKH = (int)tb.Rows[0]["MAKH"];
+                kh.HOTEN = tb.Rows[0]["HOTEN"].ToString();
+                kh.CCCD = tb.Rows[0]["CCCD"].ToString();
+                kh.SDT = tb.Rows[0]["SDT"].ToString();
+                kh.DIACHI = tb.Rows[0]["DIACHI"].ToString();
+                kh.FAXID = tb.Rows[0]["FAXID"].ToString();
+                kh.EMAIL = tb.Rows[0]["EMAIL"].ToString();
+                return kh;
+            }
+            catch
+            {
+                return null;
+            }
         }
         public static List<KhachHang> DVTour_LayDSKhachHang()
         {
@@ -64,7 +84,17 @@ namespace PTTKHTTT_QuanLyKhachSan.DB
             {
                 return null;
             }
-
+        }
+        public static int PDP_ThemKhachHang(KhachHang k)
+        {
+            try
+            {
+                return int.Parse(DBConnect.SQL_select("EXEC USP_THEMKHACHHANG N'"+k.HOTEN+"', '"+k.CCCD+"', '"+k.SDT+"', N'"+k.DIACHI+"', "+k.FAXID.ToString()+", '" + k.EMAIL + "';").Rows[0][0].ToString());
+            }
+            catch
+            {
+                return -1;
+            }
         }
 
     }

@@ -63,6 +63,7 @@
     <Compile Include="BUS\HoaDon.cs" />
     <Compile Include="BUS\DichVu.cs" />
     <Compile Include="BUS\Phong.cs" />
+    <Compile Include="BUS\SP_Func.cs" />
     <Compile Include="BUS\TaiKhoan.cs" />
     <Compile Include="BUS\Tour.cs" />
     <Compile Include="DB\DBConnect.cs" />
@@ -117,7 +118,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BUS\InputValidation.cs" />
+    <Compile Include="GUI\InputValidation.cs" />
     <Compile Include="GUI\Login_Window.xaml.cs">
       <DependentUpon>Login_Window.xaml</DependentUpon>
     </Compile>
@@ -162,6 +163,8 @@
   <ItemGroup>
     <Resource Include="GUI\images\background.jpg" />
     <Resource Include="GUI\images\search.png" />
+    <Resource Include="GUI\images\background2.jpg" />
+    <Content Include="procedure.sql" />
     <Content Include="PTTK_HTTT.sql" />
   </ItemGroup>
   <ItemGroup />
