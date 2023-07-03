@@ -2,7 +2,6 @@
 go
 
 
-
 DROP PROCEDURE IF EXISTS LayDSPhongDeDat
 go
 create PROCEDURE LayDSPhongDeDat
@@ -13,18 +12,26 @@ BEGIN
     SELECT P.MAPHONG, P.LOAIPHONG, P.HANG, P.GIA, P.TINHTRANG
     FROM PHONG P
     WHERE P.MAPHONG NOT IN (
-        SELECT distinct CTP.MAPHONG
+        SELECT CTP.MAPHONG
         FROM CHITIETPHIEUDATPHONG CTP
         INNER JOIN PHIEUDATPHONG PDP ON CTP.MAPDP = PDP.MAPDP
-        WHERE NGAYNHANPHONG > GETDATE() AND ((PDP.NGAYNHANPHONG >= @StartDate AND PDP.NGAYNHANPHONG< @EndDate)
-            OR (PDP.NGAYTRAPHONG > @StartDate AND PDP.NGAYTRAPHONG<= @EndDate))
-    )
+        --WHERE NGAYNHANPHONG > GETDATE() AND ((PDP.NGAYNHANPHONG >= @StartDate AND PDP.NGAYNHANPHONG< @EndDate)
+        --    OR (PDP.NGAYTRAPHONG > @StartDate AND PDP.NGAYTRAPHONG<= @EndDate))
+        WHERE 
+		(NGAYTRAPHONG > @StartDate and NGAYNHANPHONG  < @StartDate) or 
+		(NGAYNHANPHONG >= @StartDate and NGAYTRAPHONG <= @EndDate) or
+		(NGAYNHANPHONG < @EndDate and NGAYTRAPHONG >= @EndDate) or
+		(NGAYNHANPHONG <= @StartDate and NGAYTRAPHONG >= @EndDate)
+
+		 )
+
 END
 go
-DROP PROCEDURE IF EXISTS QLPhong_TraCuuPhong
+exec LayDSPhongDeDat '2023-07-03' , '2023-07-04'
 
-go
-drop proc QLPhong_TraCuuPhong
+
+
+DROP PROCEDURE IF EXISTS QLPhong_TraCuuPhong
 go
 create proc QLPhong_TraCuuPhong @keyword nvarchar(20)
 as
@@ -151,8 +158,6 @@ BEGIN
 	RETURN @TONGTIEN;
 END;
 go
-
-
 
 
 

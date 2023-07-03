@@ -42,7 +42,7 @@ namespace PTTKHTTT_QuanLyKhachSan.DB
         {
             try
             {
-                return int.Parse(DBConnect.SQL_select("EXEC USP_LT_TAOPHIEUDATPHONG '" + phieu.NGAYNHANPHONG + "', '" + phieu.NGAYTRAPHONG + "', " + phieu.MAKH + ", " + phieu.MANV).Rows[0][0].ToString());
+                return int.Parse(DBConnect.SQL_select("EXEC USP_LT_TAOPHIEUDATPHONG '" + SupportFunction.FormatDateSQL(phieu.NGAYNHANPHONG) + "', '" + SupportFunction.FormatDateSQL(phieu.NGAYTRAPHONG) + "', " + phieu.MAKH + ", " + phieu.MANV).Rows[0][0].ToString());
             }
             catch
             {
