@@ -2,6 +2,7 @@
 go
 
 
+
 DROP PROCEDURE IF EXISTS LayDSPhongDeDat
 go
 create PROCEDURE LayDSPhongDeDat
@@ -20,6 +21,28 @@ BEGIN
     )
 END
 go
+DROP PROCEDURE IF EXISTS QLPhong_TraCuuPhong
+
+go
+drop proc QLPhong_TraCuuPhong
+go
+create proc QLPhong_TraCuuPhong @keyword nvarchar(20)
+as
+begin try
+	select *
+	from PHONG
+	where
+		(MAPHONG like '%'+ @keyword +'%' or
+		LOAIPHONG like '%'+  @keyword +'%' or
+		HANG like '%'+  @keyword +'%' or
+		GIA like '%'+  @keyword +'%' or
+		TINHTRANG like '%'+  @keyword +'%' )
+end try
+begin catch
+end catch
+go
+
+
 
 
 
@@ -124,11 +147,11 @@ BEGIN
 	WHERE HD.MAHD = @MAHD;
 	SET @TIENDV = ISNULL(@TIENDV, 0);
 	--TINH TONG TIEN
-	SET @TONGTIEN =  @TIENPHONG;
+	SET @TONGTIEN = @TIENDV + @TIENPHONG;
 	RETURN @TONGTIEN;
 END;
 go
-SELECT dbo.uf_LT_CNTONGTIEN_HOADON(53) TONGTIEN
+
 
 
 

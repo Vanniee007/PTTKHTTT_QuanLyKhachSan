@@ -22,7 +22,7 @@
             </Grid.RowDefinitions>
             <Grid Grid.Column="1" Grid.ColumnSpan="2">
                 <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Orientation="Horizontal" >
-                    <DatePicker x:Name="tb_NgayNhan"  Style="{StaticResource MyStyle_DatePicker_TT}" Width="180"/>
+                    <DatePicker x:Name="tb_NgayNhan"  Style="{StaticResource MyStyle_DatePicker_TT}" Width="180" Loaded="tb_NgayNhan_Loaded"/>
                     <DatePicker x:Name="tb_NgayTra"  Style="{StaticResource MyStyle_DatePicker_TT}" Width="180" Margin="20,0"/>
                     <Button Click="TimKiemPhong_Click" Style="{StaticResource MyStyle_Button_Modern}" Width="35">
                         <Image Source="../GUI/images/search.png"  Height="30"   />

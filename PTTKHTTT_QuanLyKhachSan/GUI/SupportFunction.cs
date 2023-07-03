@@ -59,5 +59,25 @@ namespace PTTKHTTT_QuanLyKhachSan
             return str;
 
         }
+
+        public static string FormatDateSQL(string dateTimeString)
+        {
+            try
+            {
+                DateTime dateTime;
+                dateTime = DateTime.Parse(dateTimeString);
+                if (DateTime.TryParse(dateTimeString, out dateTime))
+                {
+                    string dateString = dateTime.ToString("yyyy-MM-dd");
+                    return dateString;
+                }
+                return dateTimeString;
+            }
+            catch
+            {
+                return "";
+            }
+
+        }
     }
 }

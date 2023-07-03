@@ -45,11 +45,11 @@ namespace PTTKHTTT_QuanLyKhachSan.BUS
             return true;
         }
 
-        public static int PDP_ThemPhieuDatPhong(KhachHang khach,PhieuDatPhong phieu, DataGrid dataGrid)
+        public static int PDP_ThemPhieuDatPhong(KhachHang khach, PhieuDatPhong phieu, DataGrid dataGrid)
         {
             try
             {
-                if (SP_Func.GetSelectedIndexes(dataGrid,5).Count == 0)
+                if (SP_Func.GetSelectedIndexes(dataGrid, 5).Count == 0)
                 {
                     return -2;
                 }
@@ -72,6 +72,7 @@ namespace PTTKHTTT_QuanLyKhachSan.BUS
             {
                 return -1;
             }
+        }
         public static List<PhieuDatPhong> QLPhong_xempdp_LayDanhSachPDP(int MaPhong)
         {
             return PhieuDatPhongDB.QLPhong_xempdp_LayDSPDP(MaPhong);
