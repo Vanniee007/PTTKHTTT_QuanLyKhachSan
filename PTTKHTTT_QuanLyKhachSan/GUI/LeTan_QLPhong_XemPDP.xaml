@@ -36,6 +36,7 @@
                 <DataGrid x:Name="QLPhong_xempdp_datagird" 
                                   AutoGenerateColumns="False"
                                   IsReadOnly="True"
+                          FontSize="18"
                                   Loaded="QLPhong_xempdp_datagird_Loaded"
                                   Background="White" Margin="10,10,10,10">
                     <DataGrid.Columns>

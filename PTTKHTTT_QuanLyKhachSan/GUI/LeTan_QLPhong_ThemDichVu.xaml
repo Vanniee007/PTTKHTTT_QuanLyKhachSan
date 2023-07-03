@@ -44,7 +44,7 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Mã dịch vụ" Binding="{Binding MADV}"  Width="1*" />
                         <DataGridTextColumn Header="Tên DV" Binding="{Binding TENDV}"   Width="2*" />
-                        <DataGridTextColumn Header="Giá" Binding="{Binding MADV}"   Width="*"/>
+                        <DataGridTextColumn Header="Giá" Binding="{Binding GIA}"   Width="*"/>
                         <DataGridTextColumn Header="Mô tả" Binding="{Binding MOTA}"   Width="1.5*"/>
                         <DataGridTextColumn Header="Địa điểm" Binding="{Binding DIADIEM}"   Width="1.5*" />
                        

@@ -55,7 +55,7 @@ namespace PTTKHTTT_QuanLyKhachSan.DB
         {
             try
             {
-                DBConnect.SQL_select("update HoaDon set TINHTRANGTT = N'Đã thanh toán' where MaHD = " + MaHD);
+                DBConnect.SQL_select("EXEC UPDATE_TTPHONG_TTHOADON @MAHD = " + MaHD);
                 return true;
             }
             catch
