@@ -18,14 +18,14 @@ namespace PTTKHTTT_QuanLyKhachSan.DB
         {
             try
             {
-                DataTable tb = DBConnect.SQL_select("select * from HoaDon");
+                DataTable tb = DBConnect.SQL_select("select * from HoaDon order by MaPDP desc");
                 List<HoaDon> ds = new List<HoaDon>();
                 foreach (DataRow row in tb.Rows)
                 {
                     ds.Add(new HoaDon
                     {
                         MAHD = (int)row["MAHD"],
-                        NGAYLAP = SupportFunction.FormatShortDate(row["NGAYLAP"].ToString()),
+                        NGAYLAP = row["NGAYLAP"].ToString(),
                         MAPDP = (int)row["MAPDP"],
                         TONGTIEN = (int)row["TONGTIEN"],
                         TINHTRANGTT = row["TINHTRANGTT"].ToString(),

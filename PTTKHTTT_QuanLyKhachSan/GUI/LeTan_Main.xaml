@@ -126,7 +126,7 @@
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Mã HĐ" Binding="{Binding MAHD}" />
                                 <DataGridTextColumn Header="Mã PĐP" Binding="{Binding MAPDP}" />
-                                <DataGridTextColumn Header="Ngày lập" Binding="{Binding NGAYLAP, StringFormat=\{0:dd/MM/yyyy\}}" />
+                                <DataGridTextColumn Header="Ngày lập" Binding="{Binding NGAYLAP}" />
                                 <DataGridTextColumn Header="Tình trạng" Binding="{Binding TINHTRANGTT}"  Width="*"/>
                                 <DataGridTextColumn Header="Mã NV" Binding="{Binding MANV}" />
                                 <!--<DataGridTextColumn Header="Tổng" Binding="{Binding TONGTIEN}" />-->

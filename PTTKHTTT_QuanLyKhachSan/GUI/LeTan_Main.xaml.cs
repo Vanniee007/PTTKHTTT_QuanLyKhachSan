@@ -260,6 +260,10 @@ namespace PTTKHTTT_QuanLyKhachSan.GUI
         }
         private void TT_datagird_Loaded(object sender, RoutedEventArgs e)
         {
+            TT_HienThi();
+        }
+        private void TT_HienThi()
+        {
             TT_datagird.ItemsSource = HoaDon.LayDanhSachHoaDon();
         }
 
