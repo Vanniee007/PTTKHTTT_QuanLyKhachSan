@@ -68,8 +68,6 @@ namespace PTTKHTTT_QuanLyKhachSan.GUI
         private void Phong_HienThi()
         {
             DP_datagird_Phong.ItemsSource = Phong.PDP_DSPhong_TheoNgay(SupportFunction.FormatShortDate(tb_NgayNhan.Text), SupportFunction.FormatShortDate(tb_NgayTra.Text));
-            tb_NgayNhan.Text = DateTime.Now.ToString();
-            tb_NgayTra.Text = DateTime.Now.AddDays(1).ToString();
         }
 
         private void TimKiemPhong_Click(object sender, RoutedEventArgs e)
@@ -126,6 +124,12 @@ namespace PTTKHTTT_QuanLyKhachSan.GUI
                 tb_diachi.Text = "";
                 tb_faxid.Text = "";
             }
+        }
+
+        private void tb_NgayNhan_Loaded(object sender, RoutedEventArgs e)
+        {
+            tb_NgayNhan.Text = DateTime.Now.ToString();
+            tb_NgayTra.Text = DateTime.Now.AddDays(1).ToString();
         }
     }
 }
